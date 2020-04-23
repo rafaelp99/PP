@@ -11,32 +11,32 @@ import java.io.*;
  * @author Rafael Pinto
  */
 public class Utilizador implements Serializable{
-    private String nomeUser;
-    private int Cod_user;
+    private String nome;
+    private int cod;
     private String pass;
     
-    public Utilizador(String nomeUser, int Cod_user, String pass){
-        this.nomeUser=nomeUser;
-        this.Cod_user=Cod_user;
+    public Utilizador(String nome, int cod, String pass){
+        this.nome=nome;
+        this.cod=cod;
         this.pass=pass;
     }
     public String getNome(){
-        return this.nomeUser;
+        return this.nome;
     }
     public int getCod(){
-        return this.Cod_user;
+        return this.cod;
     }
     public String getPasse(){
         return this.pass;
     }
     public void setNome(String nomeUser){
-        this.nomeUser=nomeUser;
+        this.nome=nome;
     }
     public void setPass(String pass){
         this.pass=pass;
     }
     @Override
     public String toString(){
-        return "Nome: " +this.nomeUser +"\nCódigo: " +this.Cod_user +"\nPassword: " +this.pass ;
+        return "Nome: " +this.nome +"\nCódigo: " +this.cod +"\nPassword: " +this.pass ;
     }
 }

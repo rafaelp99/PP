@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Backend;
-import Frontend.Startup;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,9 +34,9 @@ public class Sistema implements Serializable {
                 oos.writeObject(this);
                 oos.flush();
                 oos.close();
-                //Teste.gravou = true;
+                
                 System.out.println("Dados guardados");
-                //JOptionPane.showMessageDialog(null, "Dados guardados\nFicheiro: " + fich, "INFORMAÇÂO", JOptionPane.INFORMATION_MESSAGE);
+              
             } catch (Exception e) {
                 System.out.println("Alguma coisa deu mal ao gravar");
                 Logger.getLogger(Sistema.class.getName()).log(Level.SEVERE, null, e);
