@@ -11,9 +11,11 @@ import java.io.Serializable;
  * @author Rafael Pinto
  */
 public class Admin extends Utilizador implements Serializable{
+
   
     public Admin(String nome, int cod, String pass) {
         super(nome, cod, pass);
-        
-    }
+
+
+}
 }
