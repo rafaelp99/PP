@@ -19,8 +19,7 @@ public class Login extends javax.swing.JFrame {
     private ListaUtilizadores l;
     private Utilizador utilizador;
     private static Sistema sist;
-    int xx=0;
-    int yy=0;
+   
     /**
      * Creates new form Login
      */

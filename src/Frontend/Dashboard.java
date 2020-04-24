@@ -17,7 +17,7 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
-    public Dashboard(Utilizador nomeUser, ListaUtilizadores lista, Sistema sist) {
+    public Dashboard(Utilizador user, ListaUtilizadores lista, Sistema sist) {
         this.sist = sist;
         this.user = user;
         this.lista= lista;

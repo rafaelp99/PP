@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class Registar extends javax.swing.JFrame {
     private static ListaUtilizadores lista;
     private static Sistema sist;
-    private int Cod_user = 0;
+    private int cod = 0;
     /**
      * Creates new form Registar
      */
@@ -125,7 +125,7 @@ public class Registar extends javax.swing.JFrame {
  
             char[] getPasse = RegistPw.getPassword();
             String pass = String.valueOf(getPasse);
-                    Utilizador u = new Utilizador(nomeUser, Cod_user, pass);
+                    Utilizador u = new Utilizador(nomeUser, cod, pass);
                     lista.registarUtilizador(u);
                     new Login(sist).setVisible(true);
                     sist.gravarSistema();
