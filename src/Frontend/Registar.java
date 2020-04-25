@@ -125,7 +125,7 @@ public class Registar extends javax.swing.JFrame {
  
             char[] getPasse = RegistPw.getPassword();
             String pass = String.valueOf(getPasse);
-                    Utilizador u = new Utilizador(nomeUser, cod, pass);
+                    User u = new User(nomeUser, cod, pass);
                     lista.registarUtilizador(u);
                     new Login(sist).setVisible(true);
                     sist.gravarSistema();

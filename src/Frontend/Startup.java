@@ -15,11 +15,26 @@ import Backend.*;
 public class Startup {
 
     private static Sistema sist;
+    private static ListaUtilizadores list;
     
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        Administrador admin = new Administrador("admin", 1, "1234");
+        
         sist = new Sistema();
-        if(sist.checkFileExist()){
+        if(!sist.checkFileExist()){
+            list = new ListaUtilizadores();
+            list.registarUtilizador(admin);
+            sist.setListaUtilizadores(list);
+            sist.gravarSistema();
+            System.out.print("a");
+        }
+        
+        
+        
+        else if(sist.checkFileExist()){
+            
             sist = (Sistema) sist.getSistema();
             new Login(sist).setVisible(true);
         }else{

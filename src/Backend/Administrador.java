@@ -5,17 +5,16 @@
  */
 package Backend;
 
-import java.io.Serializable;
+import java.io.*;
+
 /**
  *
  * @author Rafael Pinto
  */
-public class Admin extends Utilizador implements Serializable{
-
-  
-    public Admin(String nome, int cod, String pass) {
+public class Administrador extends Utilizador implements Serializable{
+   
+    public Administrador(String nome, int cod, String pass) {
         super(nome, cod, pass);
-
-
-}
+    }
+   
 }
