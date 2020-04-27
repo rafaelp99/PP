@@ -16,6 +16,8 @@ import java.util.logging.Logger;
 public class Sistema implements Serializable {
     private ListaUtilizadores listaUtilizadores;
     private static final String dados = "dadosDB";
+
+    public int codigoUnico;
     public Sistema() {
        this.listaUtilizadores = new ListaUtilizadores();
     }

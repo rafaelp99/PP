@@ -24,6 +24,9 @@ public class ListaUtilizadores implements Serializable {
     public void registarUtilizador(Utilizador u){
         listautilizadores.add(u);
     }
+    public void removerUtilizador(Utilizador u){
+        listautilizadores.remove(u);
+    }
         public int numeroUtilizadores(){
         return listautilizadores.size();
     }
@@ -38,4 +41,15 @@ public class ListaUtilizadores implements Serializable {
             }
         }
         return u;
-    }}
+    }
+ public Utilizador getUtilizadorCodigo(int cod){
+        Utilizador u = null;
+        for(Utilizador user : listautilizadores){
+            if(user.getCod() == (cod)){
+                u = user;
+            }
+        }
+        return u;
+    }
+}
+

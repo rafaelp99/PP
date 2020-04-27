@@ -119,19 +119,22 @@ public class Registar extends javax.swing.JFrame {
             }
         else{
             String nomeUser = registName.getText();
-            for(int i= 0; i<lista.numeroUtilizadores(); i++){
-                int Cod_user = i;
-            }
- 
+           
+                 int cod = sist.codigoUnico;
+           
+            
             char[] getPasse = RegistPw.getPassword();
             String pass = String.valueOf(getPasse);
                     User u = new User(nomeUser, cod, pass);
                     lista.registarUtilizador(u);
                     new Login(sist).setVisible(true);
+                    sist.codigoUnico++;                    
                     sist.gravarSistema();
                     this.dispose();
                     
+                    
         }
+       System.out.println(sist.codigoUnico);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

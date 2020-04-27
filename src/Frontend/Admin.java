@@ -6,6 +6,7 @@
 package Frontend;
 
 import Backend.*;
+import javax.swing.table.AbstractTableModel;
 
 
 /**
@@ -16,6 +17,9 @@ public class Admin extends javax.swing.JFrame {
  private static Utilizador user;
     private static ListaUtilizadores lista;
     private static Sistema sist;
+    private AbstractTableModel tabela;
+   
+    
     /**
      * Creates new form Dashboard
      */
@@ -24,9 +28,51 @@ public class Admin extends javax.swing.JFrame {
         this.user = user;
         this.lista= lista;
         initComponents();
+        this.tabela= criarTabela();
+        tabUtilizadores.setModel(tabela);
+        
         this.setLocationRelativeTo(null);
     }
+        private AbstractTableModel criarTabela() {   
+        String[] nomeColunas = {"Nome", "Código"};
+        
+        return new AbstractTableModel() {     
+            @Override
+            public String getColumnName(int column) {
+                return nomeColunas[column];
+            }
+           
+            @Override
+            public int getRowCount() {
+                //Retorna o número de linhas que a tabela deverá ter
+                return sist.getListaUtilizadores().numeroUtilizadores();
+            }
 
+            @Override
+            public int getColumnCount() {
+                //Retorna o número de colunas que a tabela deverá ter
+                return nomeColunas.length;
+            }
+
+            @Override
+            public Object getValueAt(int rowIndex, int columnIndex) {
+            /*
+                Este método é invocado quando se pretende "popular" cada uma das células da tabela
+                Se a tabela tem 3 linhas e 2 colunas existem 6 células (3*2), logo o método será invocado 6 vezes
+                    rowIndex representa a linha da célula (0 a rowCount -1)
+                    columnIndex representa a coluna da célula (0 a ColumnCount -1)
+            */
+                switch (columnIndex) {
+                    case 0: 
+                        return sist.getListaUtilizadores().getUtilizador(rowIndex).getNome();
+                    case 1:
+                        return sist.getListaUtilizadores().getUtilizador(rowIndex).getCod();
+                    default:
+                        return "";
+                }                              
+            }            
+        };
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,31 +82,134 @@ public class Admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabUtilizadores = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("admin");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1)
-                .addContainerGap(295, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 498, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addContainerGap(264, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 341, Short.MAX_VALUE)
         );
 
-        pack();
+        jTabbedPane1.addTab("tab1", jPanel1);
+
+        tabUtilizadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tabUtilizadores);
+        /*if(sist.getListaUtilizadores().numeroUtilizadores() == 0){
+            tabUtilizadores.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][]{
+                    {"Não existem utilizadores registados"}
+                },
+                new String[]{"Sem Informaçoes"}
+            ));
+        }else{
+            int n = sist.getListaUtilizadores().numeroUtilizadores();
+
+            Object [][] tabela = new Object[n][2];
+            for(int i = 0; i < n; i++){
+                String nome = sist.getListaUtilizadores().getUtilizador(i).getNome();
+                System.out.println(sist.getListaUtilizadores().getUtilizador(i).getNome());
+                int cod = sist.getListaUtilizadores().getUtilizador(i).getCod();
+                tabela[i][0] = nome;
+                tabela[i][1] = cod;
+            }
+            tabUtilizadores.setModel(new javax.swing.table.DefaultTableModel(
+                tabela,
+                new String [] {
+                    "Nome", "Código"
+                }
+            )
+            //{public boolean isCellEditable(int row, int column){return false;}}
+        );
+    }
+    // System.out.println(sist.getListaUtilizadores().numeroUtilizadores());
+
+    */
+
+    jButton1.setText("jButton1");
+    jButton1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+
+    javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+    jPanel2.setLayout(jPanel2Layout);
+    jPanel2Layout.setHorizontalGroup(
+        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(22, 22, 22)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(24, Short.MAX_VALUE))
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jButton1)
+            .addGap(160, 160, 160))
+    );
+    jPanel2Layout.setVerticalGroup(
+        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel2Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
+            .addComponent(jButton1)
+            .addContainerGap(199, Short.MAX_VALUE))
+    );
+
+    jTabbedPane1.addTab("tab2", jPanel2);
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
+    );
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int row = tabUtilizadores.getSelectedRow();
+        //System.out.println(row);
+        Utilizador u = sist.getListaUtilizadores().getUtilizador(row);
+        System.out.println("c" +sist.getListaUtilizadores().getUtilizador(row));
+        System.out.println("b" +u);
+        sist.getListaUtilizadores().removerUtilizador(u);
+        System.out.println("a" +sist.getListaUtilizadores().getListaUtilizador());
+        sist.gravarSistema();
+        
+        //tabUtilizadores.removeRowSelectionInterval(row, row);
+       tabela.fireTableDataChanged();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,6 +247,11 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tabUtilizadores;
     // End of variables declaration//GEN-END:variables
 }
