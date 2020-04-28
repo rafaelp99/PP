@@ -6,6 +6,7 @@
 package Frontend;
 
 import Backend.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 
@@ -203,12 +204,17 @@ public class Admin extends javax.swing.JFrame {
         Utilizador u = sist.getListaUtilizadores().getUtilizador(row);
         System.out.println("c" +sist.getListaUtilizadores().getUtilizador(row));
         System.out.println("b" +u);
+        if(u instanceof User){
         sist.getListaUtilizadores().removerUtilizador(u);
         System.out.println("a" +sist.getListaUtilizadores().getListaUtilizador());
         sist.gravarSistema();
         
         //tabUtilizadores.removeRowSelectionInterval(row, row);
        tabela.fireTableDataChanged();
+    }
+        else{
+            JOptionPane.showMessageDialog(null, "Não tem permissão para remover esse utilizador.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
