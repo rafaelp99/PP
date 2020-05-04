@@ -146,15 +146,15 @@ public class Login extends javax.swing.JFrame {
             String nome = jTextField1.getText();
             String pass = String.valueOf(jPasswordField1.getPassword());
             if(checkUserDetails(nome, pass)){
-                if(utilizador instanceof User){
+                /*if(utilizador instanceof User){
                     new Dashboard(utilizador, l, sist).setVisible(true);
                     this.dispose();
-                }
-                else if(utilizador instanceof Administrador){
-                    new Admin (utilizador, l, sist).setVisible(true);
+                }*/
+                
+                    new Dashboard (utilizador, l, sist).setVisible(true);
                     this.dispose();
-                }
-                this.dispose();
+                
+                //this.dispose();
                 }else{
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
             }}

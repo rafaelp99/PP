@@ -16,17 +16,24 @@ public class Startup {
 
     private static Sistema sist;
     private static ListaUtilizadores list;
+    private static ListaHospitais listHosp;
     
     public static void main(String[] args) {
         // TODO code application logic here
         
         Administrador admin = new Administrador("admin", 1, "1234");
+        Hospital h1 = new Hospital(1, "Hospital", "Fafe" );
+        
+        
         
         sist = new Sistema();
         if(!sist.checkFileExist()){
             list = new ListaUtilizadores();
+            listHosp = new ListaHospitais(); 
             list.registarUtilizador(admin);
+            listHosp.registarHospital(h1);
             sist.setListaUtilizadores(list);
+            sist.setListaHospitais(listHosp);
             sist.gravarSistema();
             System.out.print("a");
         }

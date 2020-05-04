@@ -15,15 +15,23 @@ import java.util.logging.Logger;
  */
 public class Sistema implements Serializable {
     private ListaUtilizadores listaUtilizadores;
+    private ListaHospitais listaHospitais;
     private static final String dados = "dadosDB";
 
     public int codigoUnico;
     public Sistema() {
        this.listaUtilizadores = new ListaUtilizadores();
+       this.listaHospitais = new ListaHospitais();
     }
     
     public ListaUtilizadores getListaUtilizadores() {
         return listaUtilizadores;
+    }
+    public ListaHospitais getListaHoospitais(){
+        return listaHospitais;
+    }
+    public void setListaHospitais(ListaHospitais listaHospitais){
+        this.listaHospitais = listaHospitais;
     }
 
     public void setListaUtilizadores(ListaUtilizadores listaUtilizadores) {

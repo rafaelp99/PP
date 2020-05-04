@@ -37,6 +37,15 @@ public class Hospital implements Serializable{
      public ArrayList<Enfermaria> getListaEnfermaria(){
         return listaEnfermaria;
     } 
+     public String getNomeHospital(){
+         return nomeHospital;
+     } 
+     public String getLocalidade(){
+         return localidade;
+     }
+     public int getCodHospital(){
+         return codHospital;
+     }
     public void adcionarPaciente(Paciente p){
         listaPacientes.add(p);
     } 
