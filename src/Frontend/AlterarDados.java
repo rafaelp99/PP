@@ -123,7 +123,7 @@ public class AlterarDados extends javax.swing.JFrame {
             user.setNome(nome);
             user.setPass(passe);
             sist.gravarSistema();
-             //JOptionPane.showMessageDialog(null, "Dados alterados!", "Dados alterados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Dados alterados!", "Dados alterados", JOptionPane.ERROR_MESSAGE);
              this.dispose();
         }
        
