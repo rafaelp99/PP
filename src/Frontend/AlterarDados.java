@@ -14,9 +14,12 @@ import javax.swing.JOptionPane;
 public class AlterarDados extends javax.swing.JFrame {
 
     private static Utilizador user;
+    private static Sistema sist;
+    //private static ListaUtilizadores list;
     
-    public AlterarDados(Utilizador user) {
+    public AlterarDados(Utilizador user, Sistema sist) {
         this.user=user;
+        this.sist=sist;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -45,9 +48,9 @@ public class AlterarDados extends javax.swing.JFrame {
 
         jNome.setText(user.getNome());
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Password ");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Password Nova");
 
         jButton1.setText("Alterar dados");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +111,9 @@ public class AlterarDados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(!jPasse.getPassword().equals(user.getPasse())){
+        char[] getPasseAntiga = jPasse.getPassword();
+        String pw = String.valueOf(getPasseAntiga);
+        if(!pw.equals(user.getPasse())){
             JOptionPane.showMessageDialog(null, "Password incorreta", "Erro", JOptionPane.ERROR_MESSAGE);
         }
         else{
@@ -117,6 +122,9 @@ public class AlterarDados extends javax.swing.JFrame {
             String passe = String.valueOf(getPasse);
             user.setNome(nome);
             user.setPass(passe);
+            sist.gravarSistema();
+             //JOptionPane.showMessageDialog(null, "Dados alterados!", "Dados alterados", JOptionPane.ERROR_MESSAGE);
+             this.dispose();
         }
        
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -155,7 +163,7 @@ public class AlterarDados extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AlterarDados(user).setVisible(true);
+                new AlterarDados(user, sist).setVisible(true);
             }
         });
     }

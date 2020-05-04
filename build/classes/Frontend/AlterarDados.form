@@ -82,14 +82,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
+        <Property name="text" type="java.lang.String" value="Password "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasse">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel3"/>
+        <Property name="text" type="java.lang.String" value="Password Nova"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPassword2">
