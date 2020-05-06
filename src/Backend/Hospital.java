@@ -46,6 +46,9 @@ public class Hospital implements Serializable{
      public int getCodHospital(){
          return codHospital;
      }
+     public Enfermaria getEnfermaria(int i){
+         return listaEnfermaria.get(i);
+     }
     public void adcionarPaciente(Paciente p){
         listaPacientes.add(p);
     } 

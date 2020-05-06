@@ -29,7 +29,7 @@ public class Utilizador implements Serializable{
     public String getPasse(){
         return this.pass;
     }
-    public void setNome(String nomeUser){
+    public void setNome(String nome){
         this.nome=nome;
     }
     public void setPass(String pass){

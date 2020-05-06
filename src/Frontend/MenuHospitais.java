@@ -89,7 +89,7 @@ private AbstractTableModel criarTabela() {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btPacientes = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,12 +110,22 @@ private AbstractTableModel criarTabela() {
         jButton1.setText("Profissionais");
 
         jButton2.setText("Enfermarias");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Alterar dados");
 
         jButton4.setText("Remover");
 
-        jButton5.setText("Pacientes");
+        btPacientes.setText("Pacientes");
+        btPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPacientesActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Voltar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +154,7 @@ private AbstractTableModel criarTabela() {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5)))
+                                .addComponent(btPacientes)))
                         .addGap(8, 8, 8)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -159,7 +169,7 @@ private AbstractTableModel criarTabela() {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addComponent(btPacientes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jButton6)
                 .addGap(34, 34, 34))
@@ -173,6 +183,20 @@ private AbstractTableModel criarTabela() {
         this.dispose();
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void btPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPacientesActionPerformed
+        int row = tabHospital.getSelectedRow();
+        Hospital h = sist.getListaHoospitais().getHospital(row);
+        new MenuEnfermaria(sist, h).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btPacientesActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        int row = tabHospital.getSelectedRow();
+        Hospital h = sist.getListaHoospitais().getHospital(row);
+        new MenuEnfermaria(sist, h).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,11 +234,11 @@ private AbstractTableModel criarTabela() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btPacientes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabHospital;
