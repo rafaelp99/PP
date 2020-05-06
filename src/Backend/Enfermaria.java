@@ -46,7 +46,12 @@ public class Enfermaria {
     /*public int camaAtribuida(){
 
     }*/
-    public void setTipo(){
+    public void setTipo(String tipo){
         this.tipo= tipo;
     }
+    
+    public void setCamas(int camas){
+        this.camas=camas;
+    }
+    
 }

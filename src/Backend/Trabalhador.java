@@ -10,5 +10,14 @@ package Backend;
  * @author Rafael Pinto
  */
 public class Trabalhador {
+    private int codigoTrabalhador;
     
+    
+    public Trabalhador(int codigoTrabalhador){
+    this.codigoTrabalhador = codigoTrabalhador;
+    }
+    
+    public int getCodigoTrabalhador(){
+        return codigoTrabalhador;
+    }
 }

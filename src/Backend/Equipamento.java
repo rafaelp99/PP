@@ -10,6 +10,14 @@ package Backend;
  * @author Rafael Pinto
  */
 public class Equipamento {
-    private Enfermaria enfermaria;
+    private int codigoEquipamento;
     
+    
+    public Equipamento(int codigoEquipamento){
+    this.codigoEquipamento = codigoEquipamento;
+    }
+    
+    public int getCodigoEquipamento(){
+        return codigoEquipamento;
+    }
 }

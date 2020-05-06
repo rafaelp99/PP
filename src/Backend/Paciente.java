@@ -28,21 +28,30 @@ public class Paciente {
     }
     public String getNome(){
         return nomePaciente;
+    }    
+    public int getCod(){
+        return codPaciente;
     }
-    public int getCama(){
-        return cama;
+    public Equipamento getEquipamento(){
+        return equip;
     }
     public Enfermaria getEnfermaria(){
         return enf;
     }
-    public int getCod(){
-        return codPaciente;
+    public int getCama(){
+        return cama;
     }
     public void setNome(String nomePaciente){
         this.nomePaciente = nomePaciente;
     }
+    public void setEquipamento(Equipamento equip){
+        this.equip = equip;
+    }
     public void setEnfermaria(Enfermaria enf){
         this.enf= enf;
+    }
+    public void setCama(int cama){
+        this.cama = cama;
     }
    
 }
