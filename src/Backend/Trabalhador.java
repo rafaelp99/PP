@@ -5,11 +5,13 @@
  */
 package Backend;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rafael Pinto
  */
-public class Trabalhador {
+public class Trabalhador implements Serializable{
     private int codigoTrabalhador;
     
     

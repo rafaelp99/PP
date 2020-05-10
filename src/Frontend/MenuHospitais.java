@@ -187,15 +187,16 @@ private AbstractTableModel criarTabela() {
     private void btPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPacientesActionPerformed
         int row = tabHospital.getSelectedRow();
         Hospital h = sist.getListaHoospitais().getHospital(row);
-        new MenuEnfermaria(sist, h).setVisible(true);
+        new MenuPaciente(sist, h).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btPacientesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
+        
         int row = tabHospital.getSelectedRow();
         Hospital h = sist.getListaHoospitais().getHospital(row);
         new MenuEnfermaria(sist, h).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

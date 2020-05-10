@@ -5,25 +5,35 @@
  */
 package Backend;
 
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author Rafael Pinto
  */
-public class Paciente {
+public class Paciente implements Serializable {
     private String nomePaciente;
     private int codPaciente;
+    private String localidade;
     private Equipamento equip;
     private Enfermaria enf;
     private int cama;
+    private Calendar dataEntrada;
+    private Calendar dataSaida;
     
-    public Paciente(String nomePaciente, int codPaciente, Enfermaria enf){
+    public Paciente(String nomePaciente, String localidade, int codPaciente, Enfermaria enf, Calendar dataEntrada){
         this.nomePaciente=nomePaciente;
         this.codPaciente=codPaciente;
+        this.localidade= localidade;
+        this.dataEntrada= dataEntrada;
         this.enf=enf;
         if(enf.getListaPaciente().size()<enf.getCamas()){
             
-            cama++;
-            
+            cama = enf.getCamaPaciente();
+            int x= enf.getCamaPaciente();
+            enf.setCamaPaciente(x);
         }
     }
     public String getNome(){
@@ -35,8 +45,18 @@ public class Paciente {
     public Equipamento getEquipamento(){
         return equip;
     }
+    public String getLocalidade(){
+        return localidade;
+    }
     public Enfermaria getEnfermaria(){
         return enf;
+    }
+
+    public Calendar getDataEntrada(){
+        return dataEntrada;
+    }
+    public Calendar getDataSaida(){
+        return dataSaida;
     }
     public int getCama(){
         return cama;
@@ -53,5 +73,11 @@ public class Paciente {
     public void setCama(int cama){
         this.cama = cama;
     }
-   
+    public void setLocalidade(String Localidade){
+        this.localidade=localidade;
+    }
+   public void setDataSaida(Calendar dataSaida){
+       this.dataSaida= dataSaida;
+   }
+
 }

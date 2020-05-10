@@ -5,20 +5,21 @@
  */
 package Backend;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Rafael Pinto
  */
-public class Enfermaria {
+public class Enfermaria implements Serializable {
     private String tipo;
-    private int codEnfermaria;
+    private String codEnfermaria;
     private int camas;
     private ArrayList<Paciente> listaPaciente;
-    private int camaPaciente= 0;
+    private int camaPaciente= 1;
     
-    public Enfermaria(String tipo, int codEnfermaria, int camas){
+    public Enfermaria(String tipo, String codEnfermaria, int camas){
     this.tipo = tipo;
     this.codEnfermaria= codEnfermaria;
     this.camas= camas;
@@ -28,7 +29,10 @@ public class Enfermaria {
     public String getTipo(){
         return tipo;
     }
-    public int getCodEnf(){
+    public int getCamaPaciente(){
+        return camaPaciente;
+    }
+    public String getCodEnf(){
         return codEnfermaria;
     }
     public int getCamas(){
@@ -53,5 +57,12 @@ public class Enfermaria {
     public void setCamas(int camas){
         this.camas=camas;
     }
+    
+    public void setCamaPaciente(int camaPaciente){
+        this.camaPaciente=camaPaciente;
+    }
+       public String toString(){
+       return "Código da Enfermaria:" + getCodEnf(); 
+   }
     
 }
