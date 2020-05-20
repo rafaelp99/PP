@@ -30,9 +30,10 @@ public class MenuPaciente extends javax.swing.JFrame {
         this.tabela= criarTabela();
         tabPaciente.setModel(tabela);
         this.setLocationRelativeTo(null);
+        
     }
 private AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Nome", "Localidade", "Código", "Código da Enfermaria", "Data de entrada", "Data da saída", "Equipamento", "Estado"};
+        String[] nomeColunas = {"Nome", "Localidade", "Código", "Código da Enfermaria", "Data de entrada", "Data da saída", "Estado"};
         System.out.println("a");
         return new AbstractTableModel() {     
             @Override
@@ -70,21 +71,23 @@ private AbstractTableModel criarTabela() {
                     case 3:
                         return hosp.getListaPacientes().get(rowIndex).getEnfermaria().getCodEnf();
                     case 4 :
-                        return null;
-                    case 5 :
-                        return null;    
-                     case 6 :
-                        return null;
-                        case 7 :
-                        return null;
+                        return hosp.getListaPacientes().get(rowIndex).getDataEntrada();
                         
+                    case 5 :
+                        return hosp.getListaPacientes().get(rowIndex).getDataSaida();    
+                     case 6 :
+                        return hosp.getListaPacientes().get(rowIndex).getEstado();
                    
                     default:
                         return "";
-                }                              
-            }            
+                        
+                }
+                
+            } 
+            
         };
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,6 +193,7 @@ private AbstractTableModel criarTabela() {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new CriarPaciente(sist, hosp).setVisible(true);
+        System.out.println(hosp.getListaPacientes().get(0).getDataEntrada());
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

@@ -169,6 +169,7 @@ public class CriarPaciente extends javax.swing.JFrame {
         Paciente p = new Paciente(nome, localidade, codigo, e1, entrada);
         System.out.println(p.getLocalidade());
         hosp.adcionarPaciente(p);
+        sist.gravarSistema();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
