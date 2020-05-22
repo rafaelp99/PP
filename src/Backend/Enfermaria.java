@@ -7,6 +7,9 @@ package Backend;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.*;
+import java.util.Iterator;
+
 
 /**
  *
@@ -16,40 +19,52 @@ public class Enfermaria implements Serializable {
     private String tipo;
     private String codEnfermaria;
     private int camas;
-    private ArrayList<Paciente> listaPaciente;
-    private int camaPaciente= 1;
+    private int camasLivres;
+    //private ArrayList<Paciente> listaPaciente;
+    //private int camaPaciente= 1;
+    private HashMap<Integer, Paciente> camaPaciente;
+    
     
     public Enfermaria(String tipo, String codEnfermaria, int camas){
     this.tipo = tipo;
     this.codEnfermaria= codEnfermaria;
     this.camas= camas;
-    listaPaciente = new ArrayList<Paciente>();
+    camaPaciente= new HashMap<Integer, Paciente>();
+    for(int i = 1; i<=camas; i++){
+        camaPaciente.put(i, null);
+        
+        System.out.println(camaPaciente.toString());
+        System.out.println(camaPaciente.containsValue(null));
+        System.out.println(camaPaciente.entrySet());
+    }
             
 }
     public String getTipo(){
         return tipo;
     }
-    public int getCamaPaciente(){
+    /*public int getCamaPaciente(){
         return camaPaciente;
-    }
+    }*/
     public String getCodEnf(){
         return codEnfermaria;
     }
     public int getCamas(){
         return camas;
     }
-    public ArrayList<Paciente> getListaPaciente(){
-        return listaPaciente;
-    }
-    public void registarPacienteEnf(Paciente p){
-        listaPaciente.add(p);
-    }
-    public void removerPacienteEnf(Paciente p){
-        listaPaciente.remove(p);
-    }
     /*public int camaAtribuida(){
 
     }*/
+    public HashMap<Integer, Paciente> getCamaPaciente(){
+        return camaPaciente;
+    }
+    public int getCamasLivres(){
+        for (HashMap.Entry<Integer, Paciente> entry : camaPaciente.entrySet()){
+            if(entry.getValue()==null){
+                camasLivres++;
+            }
+        }
+        return camasLivres;
+    }
     public void setTipo(String tipo){
         this.tipo= tipo;
     }
@@ -58,9 +73,39 @@ public class Enfermaria implements Serializable {
         this.camas=camas;
     }
     
-    public void setCamaPaciente(int camaPaciente){
-        this.camaPaciente=camaPaciente;
+    public void setPaciente(Paciente p){
+      if(camaPaciente.containsValue(null)){
+         
+            for (HashMap.Entry<Integer, Paciente> entry : camaPaciente.entrySet()) {
+             if(entry.getValue()==null){
+                
+                camaPaciente.replace(entry.getKey(), p);
+                //camaPaciente.replace(key, p);
+                //System.out.println("fdx");
+                break;
+               
+            }
+        }
+        
     }
+        else{
+        System.out.println("Enfermaria Cheia!");
+        }
+    }
+    public void removerPaciente(Paciente p){
+ 
+            for(HashMap.Entry<Integer, Paciente> entry : camaPaciente.entrySet()){
+                if(entry.getValue().equals(p)){
+                int key = entry.getKey();
+                camaPaciente.replace(key, null);
+                    }
+    }
+    }
+    
+    /*public void setCamaPaciente(int camaPaciente){
+        this.camaPaciente=camaPaciente;
+    }*/
+
        public String toString(){
        return "Código da Enfermaria:" + getCodEnf(); 
    }

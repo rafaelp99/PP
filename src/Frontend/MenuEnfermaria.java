@@ -67,8 +67,7 @@ private AbstractTableModel criarTabela() {
                         return hosp.getEnfermaria(rowIndex).getTipo();
                     case 2:
                         return hosp.getEnfermaria(rowIndex).getCamas();
-                    case 3:
-                        return hosp.getEnfermaria(rowIndex).getListaPaciente().size();
+                   
                     
                    
                     default:
@@ -188,7 +187,9 @@ private AbstractTableModel criarTabela() {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        int row = tabEnfermaria.getSelectedRow();
+        Enfermaria e = hosp.getEnfermaria(row);
+        System.out.println(e.getCamaPaciente().toString());
     }//GEN-LAST:event_jButton4ActionPerformed
  
  

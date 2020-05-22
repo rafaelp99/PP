@@ -12,6 +12,7 @@ import Backend.Sistema;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  *
@@ -21,6 +22,7 @@ public class CriarPaciente extends javax.swing.JFrame {
 
     private static Hospital hosp;
     private static Sistema sist;
+    private int cod;
     public CriarPaciente(Sistema sist, Hospital hosp) {
         this.hosp=hosp;
         this.sist=sist;
@@ -158,18 +160,43 @@ public class CriarPaciente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String nome= jTextField1.getText();
         String localidade = jTextField2.getText();
-        int codigo = (int) jSpinner1.getValue();
+        //int codigo = (int) jSpinner1.getValue();
         Calendar entrada = jDateChooser1.getCalendar();
         int codenf = jComboBox1.getSelectedIndex();
+        String codE = String.valueOf(codenf);
         Enfermaria e1 = null;
-        for(Enfermaria e : hosp.getListaEnfermaria()){
-            e.getCodEnf().equals(codenf);
+        for(Enfermaria e : hosp.getListaEnfermariaLivres()){
+            e.getCodEnf().equals(codE);
+                
+            
             e1= e;
+        
         }
-        Paciente p = new Paciente(nome, localidade, codigo, e1, entrada);
+        System.out.println(e1.getCodEnf());
+        Paciente p = new Paciente(nome, localidade, cod, e1, entrada);
         System.out.println(p.getLocalidade());
         hosp.adcionarPaciente(p);
+       
+        e1.setPaciente(p);
+        try{
+            for(HashMap.Entry<Integer, Paciente> entry : e1.getCamaPaciente().entrySet()){
+           
+            if(entry.getValue().equals(p)){
+                int i= entry.getKey();
+                p.setCama(i);
+            }
+        }
+        }
+        catch(Exception e){
+          
+        }
+       
+        
+        cod++;
+        
         sist.gravarSistema();
+        
+        System.out.println(p.getCama());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

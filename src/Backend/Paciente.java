@@ -8,6 +8,8 @@ package Backend;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -30,12 +32,9 @@ public class Paciente implements Serializable {
         this.localidade= localidade;
         this.dataEntrada= dataEntrada;
         this.enf=enf;
-        if(enf.getListaPaciente().size()<enf.getCamas()){
-            
-            cama = enf.getCamaPaciente();
-            int x= enf.getCamaPaciente();
-            enf.setCamaPaciente(x);
-        }
+       
+      
+       
     }
     public String getNome(){
         return nomePaciente;
@@ -62,6 +61,7 @@ public class Paciente implements Serializable {
     public Calendar getDataSaida(){
         return dataSaida;
     }
+   
     public int getCama(){
         return cama;
     }

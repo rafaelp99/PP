@@ -33,7 +33,7 @@ public class MenuPaciente extends javax.swing.JFrame {
         
     }
 private AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Nome", "Localidade", "Código", "Código da Enfermaria", "Data de entrada", "Data da saída", "Estado"};
+        String[] nomeColunas = {"Nome", "Código", "Código da Enfermaria", "Cama", "Data de entrada", "Data da saída", "Estado"};
         System.out.println("a");
         return new AbstractTableModel() {     
             @Override
@@ -44,7 +44,7 @@ private AbstractTableModel criarTabela() {
             @Override
             public int getRowCount() {
                 //Retorna o número de linhas que a tabela deverá ter
-                return sist.getListaHoospitais().getListaHospital().size();
+                return hosp.getListaPacientes().size();
             }
 
             @Override
@@ -64,14 +64,15 @@ private AbstractTableModel criarTabela() {
                 switch (columnIndex) {
                     case 0: 
                         return hosp.getListaPacientes().get(rowIndex).getNome();
+                    
                     case 1:
-                        return hosp.getListaPacientes().get(rowIndex).getLocalidade();
-                    case 2:
                         return hosp.getListaPacientes().get(rowIndex).getCod();
-                    case 3:
+                    case 2:
                         return hosp.getListaPacientes().get(rowIndex).getEnfermaria().getCodEnf();
-                    case 4 :
-                        return hosp.getListaPacientes().get(rowIndex).getDataEntrada();
+                    case 3:
+                        return hosp.getListaPacientes().get(rowIndex).getCama();
+                    case 4:
+                        return hosp.getListaPacientes().get(rowIndex).getDataEntrada().toString();
                         
                     case 5 :
                         return hosp.getListaPacientes().get(rowIndex).getDataSaida();    
@@ -193,7 +194,7 @@ private AbstractTableModel criarTabela() {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new CriarPaciente(sist, hosp).setVisible(true);
-        System.out.println(hosp.getListaPacientes().get(0).getDataEntrada());
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
