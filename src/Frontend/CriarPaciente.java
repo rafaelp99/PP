@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,7 @@ public class CriarPaciente extends javax.swing.JFrame {
     private static Hospital hosp;
     private static Sistema sist;
     private int cod;
+    private ArrayList<String> listaenf;
     public CriarPaciente(Sistema sist, Hospital hosp) {
         this.hosp=hosp;
         this.sist=sist;
@@ -66,6 +68,11 @@ public class CriarPaciente extends javax.swing.JFrame {
         jLabel4.setText("Data de entrada");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("jLabel5");
 
@@ -143,11 +150,12 @@ public class CriarPaciente extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        String[] codEnf = new String[hosp.getListaEnfermaria().size()];
+        String[] codEnf = new String[hosp.getListaEnfermariaLivres().size()];
         ArrayList<String> listaenf = new ArrayList<String>();
-        for(Enfermaria e : hosp.getListaEnfermaria()){
+        for(Enfermaria e : hosp.getListaEnfermariaLivres()){
             listaenf.add(e.getCodEnf());
         }
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(listaenf.toArray(codEnf)));
 
         pack();
@@ -170,10 +178,14 @@ public class CriarPaciente extends javax.swing.JFrame {
                 
             
             e1= e;
-        
+            hosp.getListaEnfermariaLivres().clear();
+                    
         }
         System.out.println(e1.getCodEnf());
-        Paciente p = new Paciente(nome, localidade, cod, e1, entrada);
+        try{
+            Paciente p = new Paciente(nome, localidade, cod, e1, entrada);
+        
+        
         System.out.println(p.getLocalidade());
         hosp.adcionarPaciente(p);
        
@@ -195,9 +207,20 @@ public class CriarPaciente extends javax.swing.JFrame {
         cod++;
         
         sist.gravarSistema();
-        
         System.out.println(p.getCama());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,
+    "Selecione outra enfermaria para colocar o Paciente",
+    "Enfermaria Cheia",
+    JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

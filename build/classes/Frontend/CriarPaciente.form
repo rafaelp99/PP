@@ -133,8 +133,11 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+      </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="String[] codEnf = new String[hosp.getListaEnfermaria().size()];&#xa;ArrayList&lt;String&gt; listaenf = new ArrayList&lt;String&gt;();&#xa;    for(Enfermaria e : hosp.getListaEnfermaria()){&#xa;        listaenf.add(e.getCodEnf());&#xa;}&#xa;jComboBox1.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(listaenf.toArray(codEnf)));"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="String[] codEnf = new String[hosp.getListaEnfermariaLivres().size()];&#xa;ArrayList&lt;String&gt; listaenf = new ArrayList&lt;String&gt;();&#xa;    for(Enfermaria e : hosp.getListaEnfermariaLivres()){&#xa;        listaenf.add(e.getCodEnf());&#xa;}&#xa;&#xa;jComboBox1.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(listaenf.toArray(codEnf)));"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

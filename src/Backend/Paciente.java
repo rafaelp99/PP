@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,7 +33,10 @@ public class Paciente implements Serializable {
         this.localidade= localidade;
         this.dataEntrada= dataEntrada;
         this.enf=enf;
-       
+       if(!enf.getCamaPaciente().containsValue(null)){
+           throw new IllegalArgumentException(
+                   "Enfermaria Cheia");
+       }
       
        
     }

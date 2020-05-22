@@ -81,7 +81,7 @@ public class Enfermaria implements Serializable {
                 
                 camaPaciente.replace(entry.getKey(), p);
                 //camaPaciente.replace(key, p);
-                //System.out.println("fdx");
+                
                 break;
                
             }
