@@ -12,10 +12,11 @@ import java.io.Serializable;
  * @author Rafael Pinto
  */
 public class Trabalhador implements Serializable{
+    private String nomeTrabalhador;
     private int codigoTrabalhador;
     
     
-    public Trabalhador(int codigoTrabalhador){
+    public Trabalhador(int codigoTrabalhador, String nomeTrabalhador){
     this.codigoTrabalhador = codigoTrabalhador;
     }
     

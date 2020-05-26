@@ -32,7 +32,7 @@ public class MenuEnfermaria extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 private AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Codigo", "Tipo", "Camas", "Pacientes"};
+        String[] nomeColunas = {"Codigo", "Tipo", "Camas", "Vagas"};
         System.out.println("a");
         return new AbstractTableModel() {     
             @Override
@@ -67,6 +67,8 @@ private AbstractTableModel criarTabela() {
                         return hosp.getEnfermaria(rowIndex).getTipo();
                     case 2:
                         return hosp.getEnfermaria(rowIndex).getCamas();
+                    case 3:
+                        return hosp.getEnfermaria(rowIndex).getCamasLivres();
                    
                     
                    

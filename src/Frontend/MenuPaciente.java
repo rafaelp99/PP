@@ -72,7 +72,7 @@ private AbstractTableModel criarTabela() {
                     case 3:
                         return hosp.getListaPacientes().get(rowIndex).getCama();
                     case 4:
-                        return hosp.getListaPacientes().get(rowIndex).getDataEntrada().toString();
+                        return hosp.getListaPacientes().get(rowIndex).getDataEntrada();
                         
                     case 5 :
                         return hosp.getListaPacientes().get(rowIndex).getDataSaida();    

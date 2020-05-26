@@ -6,6 +6,8 @@
 package Backend;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,6 +28,8 @@ public class Paciente implements Serializable {
     private int cama;
     private Calendar dataEntrada;
     private Calendar dataSaida;
+    private String data = "dd/MM/YYYY";
+    private DateFormat df = new SimpleDateFormat(data);
     
     public Paciente(String nomePaciente, String localidade, int codPaciente, Enfermaria enf, Calendar dataEntrada){
         this.nomePaciente=nomePaciente;
@@ -59,11 +63,14 @@ public class Paciente implements Serializable {
         return estado;
     }
 
-    public Calendar getDataEntrada(){
-        return dataEntrada;
+    public String getDataEntrada(){
+        return getTempo(dataEntrada);
     }
-    public Calendar getDataSaida(){
-        return dataSaida;
+   public String getTempo(Calendar calendar){
+        return df.format(calendar.getTime());
+    }
+    public String getDataSaida(){
+        return getTempo(dataSaida);
     }
    
     public int getCama(){

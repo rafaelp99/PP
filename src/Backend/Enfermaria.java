@@ -58,12 +58,15 @@ public class Enfermaria implements Serializable {
         return camaPaciente;
     }
     public int getCamasLivres(){
+        int i= 0;
         for (HashMap.Entry<Integer, Paciente> entry : camaPaciente.entrySet()){
             if(entry.getValue()==null){
-                camasLivres++;
+                i++;
             }
+           
         }
-        return camasLivres;
+        
+        return (camasLivres=i);
     }
     public void setTipo(String tipo){
         this.tipo= tipo;
@@ -102,9 +105,7 @@ public class Enfermaria implements Serializable {
     }
     }
     
-    /*public void setCamaPaciente(int camaPaciente){
-        this.camaPaciente=camaPaciente;
-    }*/
+ 
 
        public String toString(){
        return "Código da Enfermaria:" + getCodEnf(); 
