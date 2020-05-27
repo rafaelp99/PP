@@ -5,13 +5,14 @@
         <group>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Paciente.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/Startup.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/Registar.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Equipamento.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Sistema.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuEnfermaria.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Utilizador.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuPaciente.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/CriarPaciente.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Medico.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuEnfermaria.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Hospital.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/CriarPaciente.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Trabalhador.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Enfermaria.java</file>
         </group>
     </open-files>

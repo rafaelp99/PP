@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class Paciente implements Serializable {
     private String nomePaciente;
-    private int codPaciente;
+    private String codPaciente;
     private String localidade;
     private String estado;
     private Equipamento equip;
@@ -28,10 +28,9 @@ public class Paciente implements Serializable {
     private int cama;
     private Calendar dataEntrada;
     private Calendar dataSaida;
-    private String data = "dd/MM/YYYY";
-    private DateFormat df = new SimpleDateFormat(data);
+   
     
-    public Paciente(String nomePaciente, String localidade, int codPaciente, Enfermaria enf, Calendar dataEntrada){
+    public Paciente(String nomePaciente, String localidade, String codPaciente, Enfermaria enf, Calendar dataEntrada){
         this.nomePaciente=nomePaciente;
         this.codPaciente=codPaciente;
         this.localidade= localidade;
@@ -47,7 +46,7 @@ public class Paciente implements Serializable {
     public String getNome(){
         return nomePaciente;
     }    
-    public int getCod(){
+    public String getCod(){
         return codPaciente;
     }
     public Equipamento getEquipamento(){
@@ -67,8 +66,15 @@ public class Paciente implements Serializable {
         return getTempo(dataEntrada);
     }
    public String getTempo(Calendar calendar){
-        return df.format(calendar.getTime());
+       if(calendar != null){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(calendar.getTime());
+         
     }
+       else{
+           return "";
+       } 
+   }
     public String getDataSaida(){
         return getTempo(dataSaida);
     }

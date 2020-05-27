@@ -12,19 +12,19 @@ import java.io.Serializable;
  * @author Rafael Pinto
  */
 public class Equipamento implements Serializable {
-    private int codigoEquipamento;
+    private String codigoEquipamento;
     private String nomeEquipamento;
     private Paciente paciente;
     private String estado;
     
     
-    public Equipamento(int codigoEquipamento, String nomeEquipamento){
+    public Equipamento(String codigoEquipamento, String nomeEquipamento){
     this.codigoEquipamento = codigoEquipamento;
     this.nomeEquipamento=nomeEquipamento;
     this.estado="Livre";
     }
     
-    public int getCodigoEquipamento(){
+    public String getCodigoEquipamento(){
         return codigoEquipamento;
     }
     public String getNome(){

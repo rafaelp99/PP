@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Rafael Pinto
  */
 public class Hospital implements Serializable{
-    private int codHospital;
+    private String codHospital;
     private String nomeHospital;
     private String localidade;
     private ArrayList<Paciente> listaPacientes;
@@ -20,7 +20,7 @@ public class Hospital implements Serializable{
     private ArrayList<Enfermaria> listaEnfermaria;
     private ArrayList<Enfermaria> listaEnfermariaDisponivel;
     
-    public Hospital(int codHospital, String nomeHospital, String localidade){
+    public Hospital(String codHospital, String nomeHospital, String localidade){
         this.codHospital=codHospital;
         this.nomeHospital= nomeHospital;
         this.localidade=localidade;
@@ -54,7 +54,7 @@ public class Hospital implements Serializable{
      public String getLocalidade(){
          return localidade;
      }
-     public int getCodHospital(){
+     public String getCodHospital(){
          return codHospital;
      }
      public Enfermaria getEnfermaria(int i){

@@ -166,8 +166,9 @@ public class CriarEnfermaria extends javax.swing.JFrame {
         String novoTipo = (String) jComboBox1.getSelectedItem();
         String codEnf = jTextField1.getText();
         int camas = (int) jSpinner1.getValue();
-        Enfermaria e = new Enfermaria(novoTipo, codEnf, camas);
+        Enfermaria e = new Enfermaria(novoTipo, "e"+sist.codigoUnico, camas);
         hosp.adcionarEnfermaria(e);
+        sist.codigoUnico++;
         sist.gravarSistema();
         //tabela.fireTableDataChanged();
         new MenuEnfermaria(sist, hosp).setVisible(true);

@@ -13,14 +13,14 @@ import java.io.Serializable;
  */
 public class Trabalhador implements Serializable{
     private String nomeTrabalhador;
-    private int codigoTrabalhador;
+    private String codigoTrabalhador;
     
     
-    public Trabalhador(int codigoTrabalhador, String nomeTrabalhador){
+    public Trabalhador(String codigoTrabalhador, String nomeTrabalhador){
     this.codigoTrabalhador = codigoTrabalhador;
     }
     
-    public int getCodigoTrabalhador(){
+    public String getCodigoTrabalhador(){
         return codigoTrabalhador;
     }
 }

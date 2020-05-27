@@ -20,7 +20,7 @@ public class Enfermaria implements Serializable {
     private String codEnfermaria;
     private int camas;
     private int camasLivres;
-    //private ArrayList<Paciente> listaPaciente;
+    private ArrayList<Equipamento> listaEquipamento;
     //private int camaPaciente= 1;
     private HashMap<Integer, Paciente> camaPaciente;
     
@@ -29,6 +29,7 @@ public class Enfermaria implements Serializable {
     this.tipo = tipo;
     this.codEnfermaria= codEnfermaria;
     this.camas= camas;
+    ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
     camaPaciente= new HashMap<Integer, Paciente>();
     for(int i = 1; i<=camas; i++){
         camaPaciente.put(i, null);
@@ -42,18 +43,21 @@ public class Enfermaria implements Serializable {
     public String getTipo(){
         return tipo;
     }
-    /*public int getCamaPaciente(){
-        return camaPaciente;
-    }*/
+    public ArrayList<Equipamento> getListaEquipamento(){
+        return listaEquipamento;
+    }
     public String getCodEnf(){
         return codEnfermaria;
     }
     public int getCamas(){
         return camas;
     }
-    /*public int camaAtribuida(){
-
-    }*/
+    public void addEquipamento(Equipamento eq){
+        listaEquipamento.add(eq);
+    }
+    public void removerEquipamento(Equipamento eq){
+        listaEquipamento.remove(eq);
+    }
     public HashMap<Integer, Paciente> getCamaPaciente(){
         return camaPaciente;
     }
