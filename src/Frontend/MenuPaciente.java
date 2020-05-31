@@ -7,7 +7,9 @@ package Frontend;
 
 import Backend.Hospital;
 import Backend.ListaHospitais;
+import Backend.Paciente;
 import Backend.Sistema;
+import Backend.Utilizador;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -17,14 +19,16 @@ import javax.swing.table.AbstractTableModel;
 public class MenuPaciente extends javax.swing.JFrame {
        private static Sistema sist;
        private static Hospital hosp;
+       private static Utilizador user;
        private static ListaHospitais listH;
-       private AbstractTableModel tabela;
+       AbstractTableModel tabela;
        
     /**
      * Creates new form MenuPaciente
      */
-    public MenuPaciente(Sistema sist, Hospital hosp) {
+    public MenuPaciente(Sistema sist, Utilizador user, Hospital hosp) {
         this.sist = sist;
+        this.user = user;
         this.hosp = hosp;
         initComponents();
         this.tabela= criarTabela();
@@ -32,7 +36,7 @@ public class MenuPaciente extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         
     }
-private AbstractTableModel criarTabela() {   
+public AbstractTableModel criarTabela() {   
         String[] nomeColunas = {"Nome", "Código", "Código da Enfermaria", "Cama", "Data de entrada", "Data da saída", "Estado"};
         System.out.println("a");
         return new AbstractTableModel() {     
@@ -184,16 +188,19 @@ private AbstractTableModel criarTabela() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new MenuHospitais(sist).setVisible(true);
+        new MenuHospitais(user, sist).setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        int row = tabPaciente.getSelectedRow();
+        Paciente p = hosp.getPaciente(row);
+        new EditarPaciente(sist, user, hosp, p).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new CriarPaciente(sist, hosp).setVisible(true);
+        new CriarPaciente(sist, hosp, this).setVisible(true);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -227,7 +234,7 @@ private AbstractTableModel criarTabela() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPaciente(sist, hosp).setVisible(true);
+                new MenuPaciente(sist, user, hosp).setVisible(true);
             }
         });
     }

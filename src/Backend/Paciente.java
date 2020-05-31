@@ -30,11 +30,12 @@ public class Paciente implements Serializable {
     private Calendar dataSaida;
    
     
-    public Paciente(String nomePaciente, String localidade, String codPaciente, Enfermaria enf, Calendar dataEntrada){
+    public Paciente(String nomePaciente, String localidade, String codPaciente, Enfermaria enf, Calendar dataEntrada, String estado){
         this.nomePaciente=nomePaciente;
         this.codPaciente=codPaciente;
         this.localidade= localidade;
         this.dataEntrada= dataEntrada;
+        this.estado= estado;
         this.enf=enf;
        if(!enf.getCamaPaciente().containsValue(null)){
            throw new IllegalArgumentException(

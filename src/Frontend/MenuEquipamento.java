@@ -5,8 +5,8 @@
  */
 package Frontend;
 
+import Backend.Enfermaria;
 import Backend.Hospital;
-import Backend.Paciente;
 import Backend.Sistema;
 import Backend.Utilizador;
 
@@ -14,20 +14,21 @@ import Backend.Utilizador;
  *
  * @author Rafael Pinto
  */
-public class EditarPaciente extends javax.swing.JFrame {
+public class MenuEquipamento extends javax.swing.JFrame {
+    private static Utilizador user;
     private static Sistema sist;
-       private static Hospital hosp;
-       private static Utilizador user;
-       private static Paciente pac;
-
+    private static Hospital hosp;
+    private static Enfermaria enf;
+            
+            
     /**
-     * Creates new form EditarPaciente
+     * Creates new form MenuEquipamento
      */
-    public EditarPaciente(Sistema sist, Utilizador user, Hospital hosp, Paciente pac) {
-        this.sist = sist;
-        this.user = user;
-        this.hosp = hosp;
-        this.pac = pac;
+    public MenuEquipamento(Utilizador user, Sistema sist, Hospital hosp, Enfermaria enf) {
+        this.user= user;
+        this.hosp=hosp;
+        this.sist=sist;
+        this.enf=enf;
         initComponents();
     }
 
@@ -73,20 +74,20 @@ public class EditarPaciente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditarPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuEquipamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarPaciente(sist, user, hosp, pac).setVisible(true);
+                new MenuEquipamento(user, sist, hosp, enf).setVisible(true);
             }
         });
     }

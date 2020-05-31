@@ -9,6 +9,10 @@ import Backend.Enfermaria;
 import Backend.Hospital;
 import Backend.ListaHospitais;
 import Backend.Sistema;
+import Backend.Utilizador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -18,20 +22,22 @@ import javax.swing.table.AbstractTableModel;
 public class MenuEnfermaria extends javax.swing.JFrame {
        private static Sistema sist;
        private static Hospital hosp;
+       private static Utilizador user;
        private static ListaHospitais listH;
        private AbstractTableModel tabela;
     /**
      * Creates new form MenuEnfermaria
      */
-    public MenuEnfermaria(Sistema sist, Hospital hosp) {
+    public MenuEnfermaria(Utilizador user,Sistema sist, Hospital hosp) {
         this.sist = sist;
         this.hosp = hosp;
+        this.user= user;
         initComponents();
         this.tabela= criarTabela();
         tabEnfermaria.setModel(tabela);
         this.setLocationRelativeTo(null);
     }
-private AbstractTableModel criarTabela() {   
+public AbstractTableModel criarTabela() {   
         String[] nomeColunas = {"Codigo", "Tipo", "Camas", "Vagas"};
         System.out.println("a");
         return new AbstractTableModel() {     
@@ -139,6 +145,11 @@ private AbstractTableModel criarTabela() {
         });
 
         jButton5.setText("Equipamentos");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -186,15 +197,25 @@ private AbstractTableModel criarTabela() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new CriarEnfermaria(sist, hosp, tabela).setVisible(true);
-        this.dispose();
+        new CriarEnfermaria(sist, hosp, tabela, this).setVisible(true);
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    public void atualizar(){
+        tabela.fireTableDataChanged();
+    }
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int row = tabEnfermaria.getSelectedRow();
         Enfermaria e = hosp.getEnfermaria(row);
-        hosp.removerEnfermaria(e);
+           try {
+               hosp.removerEnfermaria(e);
+           } catch (Exception ex) {
+               JOptionPane.showMessageDialog(null,
+    "Enfermaria com Pacientes, mova todos os pacientes para outra enfermaria antes de remover esta.",
+    "Enfermaria Cheia",
+    JOptionPane.ERROR_MESSAGE);
+           }
         sist.gravarSistema();
         tabela.fireTableDataChanged();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -207,8 +228,13 @@ private AbstractTableModel criarTabela() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
+        new MenuHospitais(user, sist).setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
  
  
     /**
@@ -241,7 +267,7 @@ private AbstractTableModel criarTabela() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuEnfermaria(sist, hosp).setVisible(true);
+                new MenuEnfermaria(user, sist, hosp).setVisible(true);
             }
         });
     }

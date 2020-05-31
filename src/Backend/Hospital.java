@@ -60,6 +60,9 @@ public class Hospital implements Serializable{
      public Enfermaria getEnfermaria(int i){
          return listaEnfermaria.get(i);
      }
+     public Paciente getPaciente(int i){
+         return listaPacientes.get(i);
+     }
     public void adcionarPaciente(Paciente p){
         listaPacientes.add(p);
     } 
@@ -75,7 +78,12 @@ public class Hospital implements Serializable{
     public void removerTrabalhador(Trabalhador t){
         listaTrabalhadores.remove(t);
     }
-    public void removerEnfermaria(Enfermaria e){
-        listaEnfermaria.remove(e);
+    public void removerEnfermaria(Enfermaria e) throws Exception{
+        if(e.getCamasLivres()==e.getCamas()){
+            listaEnfermaria.remove(e);
+        }
+        else{
+            throw new Exception("Mova todos os Pacientes");
+        }
     }
 }
