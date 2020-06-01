@@ -29,7 +29,7 @@ public class Enfermaria implements Serializable {
     this.tipo = tipo;
     this.codEnfermaria= codEnfermaria;
     this.camas= camas;
-    ArrayList<Equipamento> listaEquipamento = new ArrayList<>();
+    listaEquipamento = new ArrayList<Equipamento>();
     camaPaciente= new HashMap<Integer, Paciente>();
     for(int i = 1; i<=camas; i++){
         camaPaciente.put(i, null);

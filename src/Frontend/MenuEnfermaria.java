@@ -236,7 +236,7 @@ public AbstractTableModel criarTabela() {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int row= tabEnfermaria.getSelectedRow();
         Enfermaria e = hosp.getEnfermaria(row);
-        new MenuEquipamento(user, sist, hosp, e);
+        new MenuEquipamento(user, sist, hosp, e).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
  
