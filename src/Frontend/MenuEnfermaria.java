@@ -227,13 +227,17 @@ public AbstractTableModel criarTabela() {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();
+        
         new MenuHospitais(user, sist).setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        int row= tabEnfermaria.getSelectedRow();
+        Enfermaria e = hosp.getEnfermaria(row);
+        new MenuEquipamento(user, sist, hosp, e);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
  
  
