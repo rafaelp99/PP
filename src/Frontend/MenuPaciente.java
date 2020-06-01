@@ -39,6 +39,8 @@ public class MenuPaciente extends javax.swing.JFrame {
 public AbstractTableModel criarTabela() {   
         String[] nomeColunas = {"Nome", "Código", "Código da Enfermaria", "Cama", "Data de entrada", "Data da saída", "Estado"};
         System.out.println("a");
+        tabPaciente.setAutoCreateRowSorter(true);
+
         return new AbstractTableModel() {     
             @Override
             public String getColumnName(int column) {

@@ -238,6 +238,7 @@ public AbstractTableModel criarTabela() {
         Enfermaria e = hosp.getEnfermaria(row);
         new MenuEquipamento(user, sist, hosp, e).setVisible(true);
         this.dispose();
+       
     }//GEN-LAST:event_jButton5ActionPerformed
  
  
