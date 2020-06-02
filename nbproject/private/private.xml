@@ -3,16 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/CriarEquipamento.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/EditarPaciente.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Paciente.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/Dashboard.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/Registar.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Equipamento.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuEnfermaria.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuPaciente.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuEquipamento.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Hospital.java</file>
-            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Trabalhador.java</file>
             <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Enfermaria.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/Login.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuHospitais.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/CriarEquipamento.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/Admin.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Frontend/MenuPaciente.java</file>
+            <file>file:/C:/Users/Rafael%20Pinto/Documents/NetBeansProjects/Hospital/src/Backend/Trabalhador.java</file>
         </group>
     </open-files>
 </project-private>
