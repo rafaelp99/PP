@@ -211,6 +211,7 @@ public class EditarPaciente extends javax.swing.JFrame {
                 
             }
             else{
+                pac.getEnfermaria().removerPaciente(pac);
                 pac.setEnfermaria(e);
                 e.setPaciente(pac);
                 try{
@@ -223,7 +224,7 @@ public class EditarPaciente extends javax.swing.JFrame {
                 }
             }
         catch(Exception ex){
-          
+          System.out.println("erro set cama");
             }
             }
             
