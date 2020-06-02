@@ -11,13 +11,20 @@ package Backend;
  */
 public class Trabalhador {
     private int codigoTrabalhador;
+    private String nomeTrabalhador;
     
     
     public Trabalhador(int codigoTrabalhador){
     this.codigoTrabalhador = codigoTrabalhador;
     }
+    public Trabalhador(String nomeTrabalhador){
+    this.nomeTrabalhador = nomeTrabalhador;
+    }
     
     public int getCodigoTrabalhador(){
         return codigoTrabalhador;
+    }
+    public String getNomeTrabalhador(){
+        return nomeTrabalhador;
     }
 }
