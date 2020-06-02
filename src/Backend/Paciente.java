@@ -100,6 +100,11 @@ public class Paciente implements Serializable {
     }
    public void setDataSaida(Calendar dataSaida){
        this.dataSaida= dataSaida;
+       this.setEquipamento(null);
+       enf.removerPaciente(this);
+       this.setEstado("");
+       this.enf=null;
+       this.setCama(0);
    }
    public void setEstado(String estado){
        this.estado=estado;

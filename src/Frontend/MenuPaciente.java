@@ -10,6 +10,9 @@ import Backend.ListaHospitais;
 import Backend.Paciente;
 import Backend.Sistema;
 import Backend.Utilizador;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -74,16 +77,26 @@ public AbstractTableModel criarTabela() {
                     case 1:
                         return hosp.getListaPacientes().get(rowIndex).getCod();
                     case 2:
+                        if(hosp.getListaPacientes().get(rowIndex).getEnfermaria()== null){
+                            return "";
+                        }
+                else{
                         return hosp.getListaPacientes().get(rowIndex).getEnfermaria().getCodEnf();
+                        }
                     case 3:
+                        if(hosp.getListaPacientes().get(rowIndex).getCama() == 0){
+                            return "";
+                        }
+                else{
                         return hosp.getListaPacientes().get(rowIndex).getCama();
+                        }
                     case 4:
                         return hosp.getListaPacientes().get(rowIndex).getDataEntrada();
                         
                     case 5 :
                         return hosp.getListaPacientes().get(rowIndex).getDataSaida();    
                      case 6 :
-                        return "";// hosp.getListaPacientes().get(rowIndex).getEstado();
+                        return hosp.getListaPacientes().get(rowIndex).getEstado();
                    
                     default:
                         return "";
@@ -134,6 +147,11 @@ public AbstractTableModel criarTabela() {
         });
 
         jButton2.setText("Apagar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Consultar Paciente");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -201,10 +219,28 @@ public AbstractTableModel criarTabela() {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    public void btnAlta(){
+        int row = tabPaciente.getSelectedRow();
+        Paciente p = hosp.getPaciente(row);
+        if(!p.getDataSaida().equals("")){
+            jButton4.setEnabled(false);
+            
+        }
+    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new CriarPaciente(sist, hosp, this).setVisible(true);
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = tabPaciente.getSelectedRow();
+        Paciente p = hosp.getPaciente(row);
+        Calendar today = Calendar.getInstance();
+        p.setDataSaida(today);
+        tabela.fireTableDataChanged();
+        sist.gravarSistema();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

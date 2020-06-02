@@ -24,10 +24,10 @@ public class Admin extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
-    public Admin(Utilizador user, ListaUtilizadores lista, Sistema sist) {
+    public Admin(Utilizador user, Sistema sist) {
         this.sist = sist;
         this.user = user;
-        this.lista= lista;
+        //this.lista= lista;
         initComponents();
         this.tabela= criarTabela();
         tabUtilizadores.setModel(tabela);
@@ -227,7 +227,7 @@ public class Admin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Admin(user, lista, sist).setVisible(true);
+                new Admin(user, sist).setVisible(true);
             }
         });
     }

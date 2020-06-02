@@ -102,7 +102,7 @@ public class Enfermaria implements Serializable {
     public void removerPaciente(Paciente p){
  
             for(HashMap.Entry<Integer, Paciente> entry : camaPaciente.entrySet()){
-                if(entry.getValue().equals(p)){
+                if(entry.getValue()== p){
                 int key = entry.getKey();
                 camaPaciente.replace(key, null);
                     }

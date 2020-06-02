@@ -24,6 +24,7 @@ public class MenuHospitais extends javax.swing.JFrame {
     
     public MenuHospitais(Utilizador user, Sistema sist) {
         this.sist=sist;
+        this.user=user;
         initComponents();
         this.tabela= criarTabela();
         tabHospital.setModel(tabela);
@@ -188,6 +189,7 @@ private AbstractTableModel criarTabela() {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
         this.dispose();
+        new Dashboard(user, sist).setVisible(true);
         
     }//GEN-LAST:event_jButton6ActionPerformed
 

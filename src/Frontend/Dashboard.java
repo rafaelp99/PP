@@ -17,10 +17,10 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
-    public Dashboard(Utilizador user, ListaUtilizadores lista, Sistema sist) {
+    public Dashboard(Utilizador user, Sistema sist) {
         this.sist = sist;
         this.user = user;
-        this.lista= lista;
+        //this.lista= lista;
         initComponents();
         this.setLocationRelativeTo(null);
             btnAdmin.setVisible(user instanceof Administrador);
@@ -141,7 +141,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        new Admin(user, lista, sist).setVisible(true);
+        new Admin(user, sist).setVisible(true);
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -184,7 +184,7 @@ public class Dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dashboard(user, lista, sist).setVisible(true);
+                new Dashboard(user, sist).setVisible(true);
             }
         });
     }

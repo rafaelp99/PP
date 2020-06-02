@@ -151,7 +151,7 @@ public class Login extends javax.swing.JFrame {
                     this.dispose();
                 }*/
                 
-                    new Dashboard (utilizador, l, sist).setVisible(true);
+                    new Dashboard (utilizador, sist).setVisible(true);
                     this.dispose();
                 
                 //this.dispose();
