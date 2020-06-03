@@ -213,18 +213,17 @@ public class CriarPaciente extends javax.swing.JFrame {
         mPac.tabela.fireTableDataChanged();
        
         e1.setPaciente(p);
-        try{
+        
             for(HashMap.Entry<Integer, Paciente> entry : e1.getCamaPaciente().entrySet()){
            
-            if(entry.getValue().equals(p)){
+            if(entry.getValue()== p){
                 int i= entry.getKey();
                 p.setCama(i);
             }
         }
-        }
-        catch(Exception e){
-          
-        }
+        
+       
+        
        
         
         sist.codigoUnico++;

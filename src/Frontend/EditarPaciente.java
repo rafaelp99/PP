@@ -214,18 +214,16 @@ public class EditarPaciente extends javax.swing.JFrame {
                 pac.getEnfermaria().removerPaciente(pac);
                 pac.setEnfermaria(e);
                 e.setPaciente(pac);
-                try{
+             
             for(HashMap.Entry<Integer, Paciente> entry : e.getCamaPaciente().entrySet()){
            
-            if(entry.getValue().equals(pac)){
+            if(entry.getValue()==pac){
                 int it= entry.getKey();
                 pac.setCama(it);
                     }
                 }
-            }
-        catch(Exception ex){
-          System.out.println("erro set cama");
-            }
+            
+       
             }
             
             pac.setEquipamento(eq);
