@@ -11,18 +11,19 @@ import Backend.Sistema;
 import javax.swing.table.AbstractTableModel;
 /**
  *
- * @author Rafael Pinto
+ * @author miguelmarques
  */
-public class MenuTrabalhador extends javax.swing.JFrame {
+public class MenuMedicos extends javax.swing.JFrame {
 
        private static Sistema sist;
        private static Hospital hosp;
        private static ListaHospitais listH;
-       private AbstractTableModel tabela;
+       private AbstractTableModel tabela;    
+    
     /**
-     * Creates new form MenuTrabalhador
+     * Creates new form MenuMedicos
      */
-    public MenuTrabalhador(Sistema sist, Hospital hosp) {
+    public MenuMedicos(Sistema sist, Hospital hosp) {
         this.sist = sist;
         this.hosp = hosp;
         initComponents();
@@ -31,7 +32,7 @@ public class MenuTrabalhador extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 private AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Nome", "Código"};
+        String[] nomeColunas = {"Nome", "Código", "Especialidade", "Número de Pacientes"};
         System.out.println("a");
         return new AbstractTableModel() {     
             @Override
@@ -42,7 +43,7 @@ private AbstractTableModel criarTabela() {
             @Override
             public int getRowCount() {
                 //Retorna o número de linhas que a tabela deverá ter
-                return hosp.getListaTrabalhadores().size();
+                return hosp.getListaMedicos().size();
             }
 
             @Override
@@ -61,10 +62,13 @@ private AbstractTableModel criarTabela() {
             */
                 switch (columnIndex) {
                     case 0: 
-                        return hosp.getTrabalhador(rowIndex).getNomeTrabalhador();
+                        return hosp.getTrabalhador(rowIndex).getNomeMedico();
                     case 1:
-                        return hosp.getTrabalhador(rowIndex).getCodigoTrabalhador();
-
+                        return hosp.getTrabalhador(rowIndex).getCodigoMedico();
+                    case 2:
+                        return hosp.getTrabalhador(rowIndex).getEspecialidade();
+                    case 3:
+                        return hosp.getTrabalhador(rowIndex).getListaPaciente().size();
                    
                     default:
                         return "";
@@ -103,12 +107,7 @@ private AbstractTableModel criarTabela() {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("Novo Trabalhador");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Novo Médico");
 
         jButton2.setText("Editar");
 
@@ -120,44 +119,34 @@ private AbstractTableModel criarTabela() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3))
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addGap(40, 40, 40))
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     /**
      * @param args the command line arguments
@@ -176,24 +165,24 @@ private AbstractTableModel criarTabela() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabalhador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabalhador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabalhador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuTrabalhador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMedicos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuTrabalhador().setVisible(true);
+                new MenuMedicos().setVisible(true);
             }
         });
     }
-  
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
