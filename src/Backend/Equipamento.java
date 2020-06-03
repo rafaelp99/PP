@@ -37,7 +37,8 @@ public class Equipamento implements Serializable {
         this.estado="Ocupado";
         }
         else{
-            throw new IllegalArgumentException("Equipamento ocupado");
+            p.setEquipamento(this);
+            this.paciente=p;
         }
     }
     public void removerPaciente(){
