@@ -7,7 +7,12 @@ package Frontend;
 
 import Backend.Hospital;
 import Backend.ListaHospitais;
+import Backend.Paciente;
 import Backend.Sistema;
+import Backend.Utilizador;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Calendar;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -17,22 +22,28 @@ import javax.swing.table.AbstractTableModel;
 public class MenuPaciente extends javax.swing.JFrame {
        private static Sistema sist;
        private static Hospital hosp;
+       private static Utilizador user;
        private static ListaHospitais listH;
-       private AbstractTableModel tabela;
+       AbstractTableModel tabela;
+       
     /**
      * Creates new form MenuPaciente
      */
-    public MenuPaciente(Sistema sist, Hospital hosp) {
+    public MenuPaciente(Sistema sist, Utilizador user, Hospital hosp) {
         this.sist = sist;
+        this.user = user;
         this.hosp = hosp;
         initComponents();
         this.tabela= criarTabela();
         tabPaciente.setModel(tabela);
         this.setLocationRelativeTo(null);
+        
     }
-private AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Nome", "Localidade", "Código", "Pacientes", "Profissionais"};
+public AbstractTableModel criarTabela() {   
+        String[] nomeColunas = {"Nome", "Código", "Código da Enfermaria", "Cama", "Data de entrada", "Data da saída", "Estado"};
         System.out.println("a");
+        tabPaciente.setAutoCreateRowSorter(true);
+
         return new AbstractTableModel() {     
             @Override
             public String getColumnName(int column) {
@@ -42,7 +53,7 @@ private AbstractTableModel criarTabela() {
             @Override
             public int getRowCount() {
                 //Retorna o número de linhas que a tabela deverá ter
-                return sist.getListaHoospitais().getListaHospital().size();
+                return hosp.getListaPacientes().size();
             }
 
             @Override
@@ -61,22 +72,42 @@ private AbstractTableModel criarTabela() {
             */
                 switch (columnIndex) {
                     case 0: 
-                        return sist.getListaHoospitais().getHospital(rowIndex).getNomeHospital();
+                        return hosp.getListaPacientes().get(rowIndex).getNome();
+                    
                     case 1:
-                        return sist.getListaHoospitais().getHospital(rowIndex).getLocalidade();
+                        return hosp.getListaPacientes().get(rowIndex).getCod();
                     case 2:
-                        return sist.getListaHoospitais().getHospital(rowIndex).getCodHospital();
+                        if(hosp.getListaPacientes().get(rowIndex).getEnfermaria()== null){
+                            return "";
+                        }
+                else{
+                        return hosp.getListaPacientes().get(rowIndex).getEnfermaria().getCodEnf();
+                        }
                     case 3:
-                        return sist.getListaHoospitais().getHospital(rowIndex).getListaPacientes().size();
+                        if(hosp.getListaPacientes().get(rowIndex).getCama() == 0){
+                            return "";
+                        }
+                else{
+                        return hosp.getListaPacientes().get(rowIndex).getCama();
+                        }
                     case 4:
-                        return sist.getListaHoospitais().getHospital(rowIndex).getListaTrabalhadores().size();
+                        return hosp.getListaPacientes().get(rowIndex).getDataEntrada();
+                        
+                    case 5 :
+                        return hosp.getListaPacientes().get(rowIndex).getDataSaida();    
+                     case 6 :
+                        return hosp.getListaPacientes().get(rowIndex).getEstado();
                    
                     default:
                         return "";
-                }                              
-            }            
+                        
+                }
+                
+            } 
+            
         };
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,6 +120,9 @@ private AbstractTableModel criarTabela() {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabPaciente = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,25 +146,59 @@ private AbstractTableModel criarTabela() {
             }
         });
 
+        jButton2.setText("Apagar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Consultar Paciente");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Adcionar Paciente");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(20, 20, 20))
         );
@@ -140,9 +208,39 @@ private AbstractTableModel criarTabela() {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        new MenuHospitais(sist).setVisible(true);
+        new MenuHospitais(user, sist).setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int row = tabPaciente.getSelectedRow();
+        Paciente p = hosp.getPaciente(row);
+        new EditarPaciente(sist, user, hosp, p).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    public void btnAlta(){
+        int row = tabPaciente.getSelectedRow();
+        Paciente p = hosp.getPaciente(row);
+        if(!p.getDataSaida().equals("")){
+            jButton4.setEnabled(false);
+            
+        }
+    }
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        new CriarPaciente(sist, hosp, this).setVisible(true);
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = tabPaciente.getSelectedRow();
+        Paciente p = hosp.getPaciente(row);
+        Calendar today = Calendar.getInstance();
+        p.setDataSaida(today);
+        tabela.fireTableDataChanged();
+        sist.gravarSistema();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,13 +272,16 @@ private AbstractTableModel criarTabela() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPaciente(sist, hosp).setVisible(true);
+                new MenuPaciente(sist, user, hosp).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabPaciente;
     // End of variables declaration//GEN-END:variables

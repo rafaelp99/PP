@@ -5,23 +5,31 @@
  */
 package Backend;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rafael Pinto
  */
+
 public class Trabalhador {
     private int codigoTrabalhador;
     private String nomeTrabalhador;
+
+public class Trabalhador implements Serializable{
+    private String nomeTrabalhador;
+    private String codigoTrabalhador;
+
     
     
-    public Trabalhador(int codigoTrabalhador){
+    public Trabalhador(String codigoTrabalhador, String nomeTrabalhador){
     this.codigoTrabalhador = codigoTrabalhador;
     }
     public Trabalhador(String nomeTrabalhador){
     this.nomeTrabalhador = nomeTrabalhador;
     }
     
-    public int getCodigoTrabalhador(){
+    public String getCodigoTrabalhador(){
         return codigoTrabalhador;
     }
     public String getNomeTrabalhador(){

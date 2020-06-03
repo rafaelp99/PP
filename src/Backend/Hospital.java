@@ -12,14 +12,15 @@ import java.util.ArrayList;
  * @author Rafael Pinto
  */
 public class Hospital implements Serializable{
-    private int codHospital;
+    private String codHospital;
     private String nomeHospital;
     private String localidade;
     private ArrayList<Paciente> listaPacientes;
     private ArrayList<Trabalhador> listaTrabalhadores;
     private ArrayList<Enfermaria> listaEnfermaria;
+    private ArrayList<Enfermaria> listaEnfermariaDisponivel;
     
-    public Hospital(int codHospital, String nomeHospital, String localidade){
+    public Hospital(String codHospital, String nomeHospital, String localidade){
         this.codHospital=codHospital;
         this.nomeHospital= nomeHospital;
         this.localidade=localidade;
@@ -37,17 +38,30 @@ public class Hospital implements Serializable{
      public ArrayList<Enfermaria> getListaEnfermaria(){
         return listaEnfermaria;
     } 
+     public ArrayList<Enfermaria> getListaEnfermariaLivres(){
+         listaEnfermariaDisponivel = new ArrayList<Enfermaria>();
+         for(Enfermaria e : listaEnfermaria){
+             if(e.getCamasLivres()!= 0){
+                 listaEnfermariaDisponivel.add(e);
+                 
+             }
+         }
+         return listaEnfermariaDisponivel;
+     }
      public String getNomeHospital(){
          return nomeHospital;
      } 
      public String getLocalidade(){
          return localidade;
      }
-     public int getCodHospital(){
+     public String getCodHospital(){
          return codHospital;
      }
      public Enfermaria getEnfermaria(int i){
          return listaEnfermaria.get(i);
+     }
+     public Paciente getPaciente(int i){
+         return listaPacientes.get(i);
      }
     public void adcionarPaciente(Paciente p){
         listaPacientes.add(p);
@@ -64,7 +78,12 @@ public class Hospital implements Serializable{
     public void removerTrabalhador(Trabalhador t){
         listaTrabalhadores.remove(t);
     }
-    public void removerEnfermaria(Enfermaria e){
-        listaEnfermaria.remove(e);
+    public void removerEnfermaria(Enfermaria e) throws Exception{
+        if(e.getCamasLivres()==e.getCamas()){
+            listaEnfermaria.remove(e);
+        }
+        else{
+            throw new Exception("Mova todos os Pacientes");
+        }
     }
 }

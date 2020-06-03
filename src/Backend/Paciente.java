@@ -5,39 +5,81 @@
  */
 package Backend;
 
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Rafael Pinto
  */
-public class Paciente {
+public class Paciente implements Serializable {
     private String nomePaciente;
-    private int codPaciente;
+    private String codPaciente;
+    private String localidade;
+    private String estado;
     private Equipamento equip;
     private Enfermaria enf;
     private int cama;
+    private Calendar dataEntrada;
+    private Calendar dataSaida;
+   
     
-    public Paciente(String nomePaciente, int codPaciente, Enfermaria enf){
+    public Paciente(String nomePaciente, String localidade, String codPaciente, Enfermaria enf, Calendar dataEntrada, String estado){
         this.nomePaciente=nomePaciente;
         this.codPaciente=codPaciente;
+        this.localidade= localidade;
+        this.dataEntrada= dataEntrada;
+        this.estado= estado;
         this.enf=enf;
-        if(enf.getListaPaciente().size()<enf.getCamas()){
-            
-            cama++;
-            
-        }
+       if(!enf.getCamaPaciente().containsValue(null)){
+           throw new IllegalArgumentException(
+                   "Enfermaria Cheia");
+       }
+      
+       
     }
     public String getNome(){
         return nomePaciente;
     }    
-    public int getCod(){
+    public String getCod(){
         return codPaciente;
     }
     public Equipamento getEquipamento(){
         return equip;
     }
+    public String getLocalidade(){
+        return localidade;
+    }
     public Enfermaria getEnfermaria(){
         return enf;
     }
+    public String getEstado(){
+        return estado;
+    }
+
+    public String getDataEntrada(){
+        return getTempo(dataEntrada);
+    }
+   public String getTempo(Calendar calendar){
+       if(calendar != null){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(calendar.getTime());
+         
+    }
+       else{
+           return "";
+       } 
+   }
+    public String getDataSaida(){
+        return getTempo(dataSaida);
+    }
+   
     public int getCama(){
         return cama;
     }
@@ -53,5 +95,18 @@ public class Paciente {
     public void setCama(int cama){
         this.cama = cama;
     }
-   
+    public void setLocalidade(String Localidade){
+        this.localidade=localidade;
+    }
+   public void setDataSaida(Calendar dataSaida){
+       this.dataSaida= dataSaida;
+       this.setEquipamento(null);
+       enf.removerPaciente(this);
+       this.setEstado("");
+       this.enf=null;
+       this.setCama(0);
+   }
+   public void setEstado(String estado){
+       this.estado=estado;
+   }
 }

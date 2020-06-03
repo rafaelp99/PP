@@ -8,6 +8,7 @@ package Frontend;
 import Backend.Hospital;
 import Backend.ListaHospitais;
 import Backend.Sistema;
+import Backend.Utilizador;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -18,10 +19,12 @@ public class MenuHospitais extends javax.swing.JFrame {
      
     private static Sistema sist;
     private static ListaHospitais listH;
+    private static Utilizador user;
     private AbstractTableModel tabela;
     
-    public MenuHospitais(Sistema sist) {
+    public MenuHospitais(Utilizador user, Sistema sist) {
         this.sist=sist;
+        this.user=user;
         initComponents();
         this.tabela= criarTabela();
         tabHospital.setModel(tabela);
@@ -108,6 +111,11 @@ private AbstractTableModel criarTabela() {
         jScrollPane2.setViewportView(tabHospital);
 
         jButton1.setText("Profissionais");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Enfermarias");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -181,22 +189,28 @@ private AbstractTableModel criarTabela() {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
         this.dispose();
+        new Dashboard(user, sist).setVisible(true);
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPacientesActionPerformed
         int row = tabHospital.getSelectedRow();
         Hospital h = sist.getListaHoospitais().getHospital(row);
-        new MenuEnfermaria(sist, h).setVisible(true);
+        new MenuPaciente(sist, user, h).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btPacientesActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.dispose();
+        
         int row = tabHospital.getSelectedRow();
         Hospital h = sist.getListaHoospitais().getHospital(row);
-        new MenuEnfermaria(sist, h).setVisible(true);
+        new MenuEnfermaria(user,sist, h).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,7 +242,7 @@ private AbstractTableModel criarTabela() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuHospitais(sist).setVisible(true);
+                new MenuHospitais(user, sist).setVisible(true);
             }
         });
     }

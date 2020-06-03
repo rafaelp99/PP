@@ -22,7 +22,7 @@ public class Startup {
         // TODO code application logic here
         
         Administrador admin = new Administrador("admin", 1, "1234");
-        Hospital h1 = new Hospital(1, "Hospital", "Fafe" );
+        Hospital h1 = new Hospital("h1", "Hospital", "Fafe" );
         
         
         

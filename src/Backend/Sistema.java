@@ -19,6 +19,7 @@ public class Sistema implements Serializable {
     private static final String dados = "dadosDB";
 
     public int codigoUnico;
+    
     public Sistema() {
        this.listaUtilizadores = new ListaUtilizadores();
        this.listaHospitais = new ListaHospitais();
