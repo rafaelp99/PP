@@ -243,7 +243,9 @@ public class EditarPaciente extends javax.swing.JFrame {
             pac.setEquipamento(eq);
             
             pac.setEstado(estado);
-            
+            sist.gravarSistema();
+            this.dispose();
+            new MenuPaciente(sist, user, hosp).setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(null,
