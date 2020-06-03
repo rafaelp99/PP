@@ -27,7 +27,7 @@ public class MenuTrabalhador extends javax.swing.JFrame {
         this.hosp = hosp;
         initComponents();
         this.tabela= criarTabela();
-        tabEnfermaria.setModel(tabela);
+        jTable1.setModel(tabela);
         this.setLocationRelativeTo(null);
     }
 private AbstractTableModel criarTabela() {   
@@ -61,9 +61,9 @@ private AbstractTableModel criarTabela() {
             */
                 switch (columnIndex) {
                     case 0: 
-                        return hosp.getTrabalhador(rowIndex).getNomeTrabalhador();
+                        //return hosp.getTrabalhador(rowIndex).getNomeTrabalhador();
                     case 1:
-                        return hosp.getTrabalhador(rowIndex).getCodigoTrabalhador();
+                        //return hosp.getTrabalhador(rowIndex).getCodigoTrabalhador();
 
                    
                     default:

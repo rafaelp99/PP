@@ -13,6 +13,7 @@ import Backend.Sistema;
 import Backend.Utilizador;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +24,7 @@ public class EditarPaciente extends javax.swing.JFrame {
        private static Hospital hosp;
        private static Utilizador user;
        private static Paciente pac;
+       private static Enfermaria enf;
 
     /**
      * Creates new form EditarPaciente
@@ -75,6 +77,11 @@ public class EditarPaciente extends javax.swing.JFrame {
         jLabel4.setText("Enfermaria");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Equipamento");
 
@@ -106,26 +113,31 @@ public class EditarPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(254, 254, 254))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(220, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
@@ -171,24 +183,26 @@ public class EditarPaciente extends javax.swing.JFrame {
         }
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(listaenf.toArray(codEnf)));
-        int codE = jComboBox1.getSelectedIndex();
-        String codenf = String.valueOf(codE);
+        if(enf == null){
 
-        Enfermaria e1 = hosp.getListaEnfermaria().get(codE);
-
-        String[] equip = new String[e1.getListaEquipamento().size()];
-        ArrayList<String> listaequip = new ArrayList<String>();
-        for(Equipamento eq : e1.getListaEquipamento()){
-            listaequip.add(eq.getNome());
         }
+        else{
+            String[] equip = new String[enf.getListaEquipamento().size()];
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(listaequip.toArray(equip)));
+            ArrayList<String> listaequip = new ArrayList<String>();
+            for(Equipamento eq : enf.getListaEquipamento()){
+                listaequip.add(eq.getNome() +" " +eq.getCodigoEquipamento());
+            }
+
+            jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(listaequip.toArray(equip)));
+        }
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
+       enf = hosp.getListaEnfermariaLivres().get(jComboBox1.getSelectedIndex());
+       
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -231,8 +245,29 @@ public class EditarPaciente extends javax.swing.JFrame {
             pac.setEstado(estado);
             
         }
+        else{
+            JOptionPane.showMessageDialog(null,
+    "Preencha todos os campos",
+    "Erro",
+    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        enf = hosp.getListaEnfermariaLivres().get(jComboBox1.getSelectedIndex());
+        atualizarEquipamento();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+        private void atualizarEquipamento(){
+        
+            String[] listasEquip = new String[enf.getListaEquipamento().size()];
+            ArrayList<String> listas = new ArrayList<String>();
+            for(Equipamento eq : enf.getListaEquipamento()){
+                listas.add(eq.getCodigoEquipamento() + " " +eq.getNome());
+            }
+            jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(listas.toArray(listasEquip)));
+            System.out.println("Atualizado");
+        
+    }
     /**
      * @param args the command line arguments
      */

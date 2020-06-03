@@ -17,7 +17,7 @@ public class Medico extends Trabalhador implements Serializable {
     private String especialidade;
     private ArrayList<Paciente> listaPac;
     
-    public Medico(int codigoTrabalhador, String nomeTrabalhador, String especialidade) {
+    public Medico(String codigoTrabalhador, String nomeTrabalhador, String especialidade) {
         super(codigoTrabalhador, nomeTrabalhador);
         listaPac = new ArrayList<Paciente>();
     }
