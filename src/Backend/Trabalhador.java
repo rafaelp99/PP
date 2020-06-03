@@ -12,10 +12,6 @@ import java.io.Serializable;
  * @author Rafael Pinto
  */
 
-public class Trabalhador {
-    private int codigoTrabalhador;
-    private String nomeTrabalhador;
-
 public class Trabalhador implements Serializable{
     private String nomeTrabalhador;
     private String codigoTrabalhador;
@@ -36,3 +32,4 @@ public class Trabalhador implements Serializable{
         return nomeTrabalhador;
     }
 }
+
