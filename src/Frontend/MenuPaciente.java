@@ -146,14 +146,14 @@ public AbstractTableModel criarTabela() {
             }
         });
 
-        jButton2.setText("Apagar");
+        jButton2.setText("Dar Alta");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Consultar Paciente");
+        jButton3.setText("Editar Dados");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -184,7 +184,7 @@ public AbstractTableModel criarTabela() {
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addComponent(jButton2)))
                 .addContainerGap())
         );

@@ -15,21 +15,24 @@ import java.io.Serializable;
 public class Trabalhador implements Serializable{
     private String nomeTrabalhador;
     private String codigoTrabalhador;
+    private String especialidade;
 
     
     
-    public Trabalhador(String codigoTrabalhador, String nomeTrabalhador){
+    public Trabalhador(String nomeTrabalhador, String codigoTrabalhador){
     this.codigoTrabalhador = codigoTrabalhador;
+    this.nomeTrabalhador= nomeTrabalhador;
     }
-    public Trabalhador(String nomeTrabalhador){
-    this.nomeTrabalhador = nomeTrabalhador;
-    }
+    
     
     public String getCodigoTrabalhador(){
         return codigoTrabalhador;
     }
     public String getNomeTrabalhador(){
         return nomeTrabalhador;
+    }
+    public String getEspecialidade(){
+        return especialidade;
     }
 }
 

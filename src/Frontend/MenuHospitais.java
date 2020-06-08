@@ -188,9 +188,8 @@ private AbstractTableModel criarTabela() {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         
-        this.dispose();
         new Dashboard(user, sist).setVisible(true);
-        
+        this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPacientesActionPerformed
@@ -209,7 +208,10 @@ private AbstractTableModel criarTabela() {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int row = tabHospital.getSelectedRow();
+        Hospital h = sist.getListaHoospitais().getHospital(row);
+        new MenuTrabalhador(sist, user, h).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

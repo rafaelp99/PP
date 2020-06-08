@@ -6,6 +6,7 @@
 package Frontend;
 
 import Backend.Enfermaria;
+import Backend.Equipamento;
 import Backend.Hospital;
 import Backend.Sistema;
 import Backend.Utilizador;
@@ -39,6 +40,7 @@ public class MenuEquipamento extends javax.swing.JFrame {
     public AbstractTableModel criarTabela() {   
         String[] nomeColunas = {"Codigo", "Nome", "Estado"};
         System.out.println("a");
+        tabEquipamento.setAutoCreateRowSorter(true);
         return new AbstractTableModel() {     
             @Override
             public String getColumnName(int column) {
@@ -118,6 +120,11 @@ public class MenuEquipamento extends javax.swing.JFrame {
         jButton2.setText("Editar");
 
         jButton3.setText("Remover");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Voltar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +177,14 @@ public class MenuEquipamento extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int row = tabEquipamento.getSelectedRow();
+        Equipamento eq = enf.getListaEquipamento().get(row);
+        enf.getListaEquipamento().remove(eq);
+        tabela.fireTableDataChanged();
+        sist.gravarSistema();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

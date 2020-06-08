@@ -7,7 +7,10 @@ package Frontend;
 
 import Backend.Hospital;
 import Backend.ListaHospitais;
+import Backend.Medico;
 import Backend.Sistema;
+import Backend.Trabalhador;
+import Backend.Utilizador;
 import javax.swing.table.AbstractTableModel;
 /**
  *
@@ -17,12 +20,13 @@ public class MenuTrabalhador extends javax.swing.JFrame {
 
        private static Sistema sist;
        private static Hospital hosp;
+       private static Utilizador user;
        private static ListaHospitais listH;
-       private AbstractTableModel tabela;
+       AbstractTableModel tabela;
     /**
      * Creates new form MenuTrabalhador
      */
-    public MenuTrabalhador(Sistema sist, Hospital hosp) {
+    public MenuTrabalhador(Sistema sist, Utilizador user, Hospital hosp) {
         this.sist = sist;
         this.hosp = hosp;
         initComponents();
@@ -30,9 +34,10 @@ public class MenuTrabalhador extends javax.swing.JFrame {
         jTable1.setModel(tabela);
         this.setLocationRelativeTo(null);
     }
-private AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Nome", "Código"};
+public AbstractTableModel criarTabela() {   
+        String[] nomeColunas = {"Função", "Nome", "Código", "Especialidade", "Enfermaria"};
         System.out.println("a");
+        jTable1.setAutoCreateRowSorter(true);
         return new AbstractTableModel() {     
             @Override
             public String getColumnName(int column) {
@@ -53,17 +58,48 @@ private AbstractTableModel criarTabela() {
 
             @Override
             public Object getValueAt(int rowIndex, int columnIndex) {
-            /*
-                Este método é invocado quando se pretende "popular" cada uma das células da tabela
-                Se a tabela tem 3 linhas e 2 colunas existem 6 células (3*2), logo o método será invocado 6 vezes
-                    rowIndex representa a linha da célula (0 a rowCount -1)
-                    columnIndex representa a coluna da célula (0 a ColumnCount -1)
-            */
+           
                 switch (columnIndex) {
                     case 0: 
-                        //return hosp.getTrabalhador(rowIndex).getNomeTrabalhador();
+                        if(hosp.getListaTrabalhadores().get(rowIndex) instanceof Medico){
+                            return "Médico";
+                        }
+                else{
+                            return "Trabalhador";
+                        }
                     case 1:
-                        //return hosp.getTrabalhador(rowIndex).getCodigoTrabalhador();
+                        return hosp.getListaTrabalhadores().get(rowIndex).getNomeTrabalhador();
+                    case 2:
+                        return hosp.getListaTrabalhadores().get(rowIndex).getCodigoTrabalhador();
+                    case 3:
+                        if(hosp.getListaTrabalhadores().get(rowIndex) instanceof Medico){
+                            for(Medico m : hosp.getListaMedicos()){
+                                if(m.getCodigoTrabalhador() == hosp.getListaTrabalhadores().get(rowIndex).getCodigoTrabalhador()){
+                                    return m.getEspecialidade();
+                                    
+                                }
+                                }
+                               }
+                           
+                        
+                        else{
+                            return "";
+                        }   
+                    case 4:
+                        if(hosp.getListaTrabalhadores().get(rowIndex) instanceof Medico){
+                            for(Medico m : hosp.getListaMedicos()){
+                                if(m.getCodigoTrabalhador() == hosp.getListaTrabalhadores().get(rowIndex).getCodigoTrabalhador()){
+                                    return m.getEnfermaria().getCodEnf();
+                                    
+                                }
+                                }
+                               }
+                           
+                        
+                        else{
+                            return "";
+                        }   
+                        
 
                    
                     default:
@@ -111,10 +147,25 @@ private AbstractTableModel criarTabela() {
         });
 
         jButton2.setText("Editar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Apagar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Voltar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,8 +206,28 @@ private AbstractTableModel criarTabela() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        new CriarTrabalhador(sist, hosp, this).setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        new MenuHospitais(user, sist).setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int row = jTable1.getSelectedRow();
+        Trabalhador t = hosp.getListaTrabalhadores().get(row);
+        hosp.getListaTrabalhadores().remove(t);
+        tabela.fireTableDataChanged();
+        sist.gravarSistema();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = jTable1.getSelectedRow();
+        Trabalhador t = hosp.getListaTrabalhadores().get(row);
+        new EditarTrabalhador(hosp, sist, user, t).setVisible(true);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     /**
@@ -189,7 +260,7 @@ private AbstractTableModel criarTabela() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuTrabalhador().setVisible(true);
+                new MenuTrabalhador(sist, user, hosp).setVisible(true);
             }
         });
     }
