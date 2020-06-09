@@ -102,6 +102,7 @@ public AbstractTableModel criarTabela() {
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Enfermaria");
 
         tabEnfermaria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

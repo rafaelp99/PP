@@ -96,6 +96,7 @@ private AbstractTableModel criarTabela() {
         jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Hospitais");
 
         tabHospital.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

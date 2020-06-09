@@ -104,6 +104,7 @@ public class Admin extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrador");
 
         tabUtilizadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

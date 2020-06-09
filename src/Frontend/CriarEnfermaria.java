@@ -51,6 +51,7 @@ public class CriarEnfermaria extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Criar Enfermaria");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(tipo));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -199,6 +200,7 @@ public class CriarEnfermaria extends javax.swing.JFrame {
         });
     }
 
+ JFrame frame = new JFrame("Criar Enfermaria"); 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

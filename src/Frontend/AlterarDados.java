@@ -43,6 +43,7 @@ public class AlterarDados extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Alterar Dados");
 
         jLabel1.setText("Username");
 

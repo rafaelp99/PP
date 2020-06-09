@@ -61,6 +61,7 @@ public class EditarPaciente extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Editar Paciente");
 
         jLabel1.setText("Nome do Paciente");
 

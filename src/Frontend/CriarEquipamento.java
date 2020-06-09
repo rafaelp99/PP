@@ -44,6 +44,7 @@ public class CriarEquipamento extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Criar Equipamento");
 
         jLabel1.setText("Nome do equipamento");
 

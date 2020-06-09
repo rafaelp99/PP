@@ -44,6 +44,7 @@ public class Registar extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Registo");
 
         jLabel1.setText("UserName");
 

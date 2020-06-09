@@ -40,6 +40,7 @@ public class CriarHospital extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Criar Hospital");
 
         jLabel1.setText("jLabel1");
 
