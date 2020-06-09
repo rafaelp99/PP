@@ -9,6 +9,7 @@ import Backend.Enfermaria;
 import Backend.Hospital;
 import Backend.Sistema;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.table.AbstractTableModel;
 
 /**

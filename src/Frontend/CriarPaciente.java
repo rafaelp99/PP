@@ -192,16 +192,15 @@ public class CriarPaciente extends javax.swing.JFrame {
         String localidade = jTextField2.getText();
         //int codigo = (int) jSpinner1.getValue();
         Calendar entrada = jDateChooser1.getCalendar();
-        int codenf = jComboBox1.getSelectedIndex();
-        String codE = String.valueOf(codenf);
+        
+        String codE = jComboBox1.getSelectedItem().toString();
         Enfermaria e1 = null;
-        for(Enfermaria e : hosp.getListaEnfermariaLivres()){
-            e.getCodEnf().equals(codE);
-                
-            
-            e1= e;
-            
-                    
+        for(Enfermaria e : hosp.getListaEnfermaria()){
+            if(e.getCodEnf().equals(codE)){
+                e1= e;
+                break;
+            }
+                       
         }
         String estado = (String) jComboBox2.getSelectedItem();
         System.out.println(e1.getCodEnf());

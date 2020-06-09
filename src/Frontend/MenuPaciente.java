@@ -5,15 +5,21 @@
  */
 package Frontend;
 
+import Backend.Enfermaria;
 import Backend.Hospital;
 import Backend.ListaHospitais;
+import Backend.Medico;
 import Backend.Paciente;
 import Backend.Sistema;
 import Backend.Utilizador;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.RowFilter;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -25,6 +31,7 @@ public class MenuPaciente extends javax.swing.JFrame {
        private static Utilizador user;
        private static ListaHospitais listH;
        AbstractTableModel tabela;
+       private int i=0;
        
     /**
      * Creates new form MenuPaciente
@@ -40,8 +47,8 @@ public class MenuPaciente extends javax.swing.JFrame {
         
     }
 public AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Nome", "Código", "Código da Enfermaria", "Cama", "Data de entrada", "Data da saída", "Estado"};
-        System.out.println("a");
+        String[] nomeColunas = {"Nome", "Código", "Código da Enfermaria", "Cama", "Médico", "Data de entrada", "Data da saída", "Estado"};
+        
         tabPaciente.setAutoCreateRowSorter(true);
 
         return new AbstractTableModel() {     
@@ -91,11 +98,18 @@ public AbstractTableModel criarTabela() {
                         return hosp.getListaPacientes().get(rowIndex).getCama();
                         }
                     case 4:
+                       try{
+                        return hosp.getListaPacientes().get(rowIndex).getMedico().getNomeTrabalhador();
+                       }
+                       catch (Exception NullPointerException){
+                           return "";
+                       }
+                    case 5:
                         return hosp.getListaPacientes().get(rowIndex).getDataEntrada();
                         
-                    case 5 :
+                    case 6 :
                         return hosp.getListaPacientes().get(rowIndex).getDataSaida();    
-                     case 6 :
+                    case 7 :
                         return hosp.getListaPacientes().get(rowIndex).getEstado();
                    
                     default:
@@ -123,6 +137,10 @@ public AbstractTableModel criarTabela() {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Paciente");
@@ -168,38 +186,90 @@ public AbstractTableModel criarTabela() {
             }
         });
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/filtro.png")));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jComboBox3.setVisible(false);
+        jComboBox2.setVisible(false);
+        jButton6.setVisible(false);
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enfermaria", "Médico", "Estado"}));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setVisible(false);
+        jButton6.setText("Filtrar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButton4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton2))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jButton5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton6)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(20, 20, 20))
         );
@@ -244,6 +314,68 @@ public AbstractTableModel criarTabela() {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       if(i==1){
+        jComboBox3.setVisible(true);
+        jComboBox2.setVisible(true);
+        jButton6.setVisible(true);
+        filtrarTabela();
+        i=0;   
+       }
+       else if(i==0){
+        jComboBox3.setVisible(false);
+        jComboBox2.setVisible(false);
+        jButton6.setVisible(false);
+        i=1;
+       }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        
+        atualizarComboBox();
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+      
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        filtrarTabela();
+    }//GEN-LAST:event_jButton6ActionPerformed
+ 
+     private void filtrarTabela(){
+          String key = "";
+          key = jComboBox2.getSelectedItem().toString();
+          tabela =  (AbstractTableModel) tabPaciente.getModel();
+          TableRowSorter<AbstractTableModel> rf = new TableRowSorter<AbstractTableModel>(tabela);
+           tabPaciente.setRowSorter(rf);
+           rf.setRowFilter(RowFilter.regexFilter(key));
+          
+     }
+     private void atualizarComboBox(){
+         switch(jComboBox3.getSelectedIndex()){
+             case 0:
+                String[] codEnf = new String[hosp.getListaEnfermaria().size()];
+                ArrayList<String> listaenf = new ArrayList<String>();
+                for(Enfermaria e : hosp.getListaEnfermaria()){
+                    listaenf.add(e.getCodEnf());
+                }
+
+                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(listaenf.toArray(codEnf)));
+                break;
+             case 1:
+                 String[] medico = new String[hosp.getListaMedicos().size()];
+                 ArrayList<String> listamed = new ArrayList<String>();
+                 for(Medico m: hosp.getListaMedicos()){
+                     listamed.add(m.getNomeTrabalhador());
+                 }
+                 jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(listamed.toArray(medico)));
+                 break;
+             case 2:
+                 jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Ligeiro", "Moderado", "Grave"}));
+                 break;
+         }
+     }
     /**
      * @param args the command line arguments
      */
@@ -284,6 +416,10 @@ public AbstractTableModel criarTabela() {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabPaciente;
     // End of variables declaration//GEN-END:variables

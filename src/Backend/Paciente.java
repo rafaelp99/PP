@@ -28,6 +28,7 @@ public class Paciente implements Serializable {
     private int cama;
     private Calendar dataEntrada;
     private Calendar dataSaida;
+    private Medico medico;
    
     
     public Paciente(String nomePaciente, String localidade, String codPaciente, Enfermaria enf, Calendar dataEntrada, String estado){
@@ -61,6 +62,9 @@ public class Paciente implements Serializable {
     }
     public String getEstado(){
         return estado;
+    }
+    public Medico getMedico(){
+        return medico;
     }
 
     public String getDataEntrada(){
@@ -108,5 +112,8 @@ public class Paciente implements Serializable {
    }
    public void setEstado(String estado){
        this.estado=estado;
+   }
+   public void setMedico(Medico m){
+       this.medico=m;
    }
 }
