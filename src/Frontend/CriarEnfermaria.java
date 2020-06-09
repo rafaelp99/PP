@@ -200,7 +200,7 @@ public class CriarEnfermaria extends javax.swing.JFrame {
         });
     }
 
- JFrame frame = new JFrame("Criar Enfermaria"); 
+  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
