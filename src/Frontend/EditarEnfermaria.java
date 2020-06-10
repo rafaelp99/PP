@@ -5,16 +5,28 @@
  */
 package Frontend;
 
+import Backend.Enfermaria;
+import Backend.Hospital;
+import Backend.Sistema;
+import Backend.Utilizador;
+
 /**
  *
  * @author Rafael Pinto
  */
 public class EditarEnfermaria extends javax.swing.JFrame {
-
+       private static Sistema sist;
+       private static Hospital hosp;
+       private static Utilizador user;
+       private static Enfermaria enf;
     /**
      * Creates new form EditarEnfermaria
      */
-    public EditarEnfermaria() {
+    public EditarEnfermaria(Sistema sist, Utilizador user, Hospital hosp, Enfermaria enf) {
+        this.sist = sist;
+        this.user = user;
+        this.hosp = hosp;
+        this.enf = enf;
         initComponents();
     }
 
@@ -51,7 +63,7 @@ public class EditarEnfermaria extends javax.swing.JFrame {
 
         jLabel1.setText("Tipo ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UCI", "Normal" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -98,15 +110,19 @@ public class EditarEnfermaria extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String str = jComboBox1.getSelectedItem().toString();
+        enf.setTipo(str);
+        sist.gravarSistema();
+        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
@@ -139,7 +155,7 @@ public class EditarEnfermaria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarEnfermaria().setVisible(true);
+                new EditarEnfermaria(sist, user, hosp, enf).setVisible(true);
             }
         });
     }
