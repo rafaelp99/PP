@@ -19,14 +19,16 @@ public class EditarEnfermaria extends javax.swing.JFrame {
        private static Hospital hosp;
        private static Utilizador user;
        private static Enfermaria enf;
+       private static MenuEnfermaria menuEnf;
     /**
      * Creates new form EditarEnfermaria
      */
-    public EditarEnfermaria(Sistema sist, Utilizador user, Hospital hosp, Enfermaria enf) {
+    public EditarEnfermaria(Sistema sist, Utilizador user, Hospital hosp, Enfermaria enf, MenuEnfermaria menuEnf) {
         this.sist = sist;
         this.user = user;
         this.hosp = hosp;
         this.enf = enf;
+        this.menuEnf = menuEnf;
         initComponents();
     }
 
@@ -155,7 +157,7 @@ public class EditarEnfermaria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditarEnfermaria(sist, user, hosp, enf).setVisible(true);
+                new EditarEnfermaria(sist, user, hosp, enf, menuEnf).setVisible(true);
             }
         });
     }

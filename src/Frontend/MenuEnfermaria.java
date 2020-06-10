@@ -223,6 +223,7 @@ public AbstractTableModel criarTabela() {
         int row = tabEnfermaria.getSelectedRow();
         Enfermaria e = hosp.getEnfermaria(row);
         System.out.println(e.getCamaPaciente().toString());
+        new EditarEnfermaria(sist, user, hosp, e, this).setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
