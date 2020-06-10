@@ -38,7 +38,7 @@ public class MenuEquipamento extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     public AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Codigo", "Nome", "Estado"};
+        String[] nomeColunas = {"Codigo", "Nome", "Estado", "Paciente"};
         System.out.println("a");
         tabEquipamento.setAutoCreateRowSorter(true);
         return new AbstractTableModel() {     
@@ -69,7 +69,8 @@ public class MenuEquipamento extends javax.swing.JFrame {
                         return enf.getListaEquipamento().get(rowIndex).getNome();
                     case 2:
                         return enf.getListaEquipamento().get(rowIndex).getEstado();
-                   
+                    case 3:
+                        return enf.getListaEquipamento().get(rowIndex).getPaciente().getCod();
                     
                    
                     default:

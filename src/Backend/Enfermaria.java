@@ -69,8 +69,9 @@ public class Enfermaria implements Serializable {
             }
            
         }
+        camasLivres=i;
         
-        return (camasLivres=i);
+        return camasLivres;
     }
     public void setTipo(String tipo){
         this.tipo= tipo;

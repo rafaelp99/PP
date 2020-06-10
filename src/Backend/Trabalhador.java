@@ -15,13 +15,15 @@ import java.io.Serializable;
 public class Trabalhador implements Serializable{
     private String nomeTrabalhador;
     private String codigoTrabalhador;
+    private Enfermaria enf;
     private String especialidade;
 
     
     
-    public Trabalhador(String nomeTrabalhador, String codigoTrabalhador){
+    public Trabalhador(String nomeTrabalhador, String codigoTrabalhador, Enfermaria enf){
     this.codigoTrabalhador = codigoTrabalhador;
     this.nomeTrabalhador= nomeTrabalhador;
+    this.enf=enf;
     }
     
     
@@ -31,8 +33,15 @@ public class Trabalhador implements Serializable{
     public String getNomeTrabalhador(){
         return nomeTrabalhador;
     }
-    public String getEspecialidade(){
-        return especialidade;
+    public Enfermaria getEnf(){
+        return enf;
+    }
+
+    public void setNome(String nome){
+        this.nomeTrabalhador=nome;
+    }
+    public void setEnfermaria(Enfermaria e){
+        this.enf=e;
     }
 }
 

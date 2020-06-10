@@ -112,7 +112,7 @@ public class EditarPaciente extends javax.swing.JFrame {
 
         jLabel6.setText("Médico");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {""}));
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox4ActionPerformed(evt);
@@ -191,9 +191,9 @@ public class EditarPaciente extends javax.swing.JFrame {
         String[] est = new String[]{"Ligeiro", "Moderado", "Grave"};
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(est));
-        String[] codEnf = new String[hosp.getListaEnfermariaLivres().size()];
+        String[] codEnf = new String[hosp.getListaEnfermaria().size()];
         ArrayList<String> listaenf = new ArrayList<String>();
-        for(Enfermaria e : hosp.getListaEnfermariaLivres()){
+        for(Enfermaria e : hosp.getListaEnfermaria()){
             listaenf.add(e.getCodEnf());
         }
 
@@ -211,19 +211,14 @@ public class EditarPaciente extends javax.swing.JFrame {
             listaequip.add("Nenhum equipamento");
             jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(listaequip.toArray(equip)));
         }
-        if(enf == null){
+        String[] medicos = new String[hosp.getListaMedicos().size()];
 
+        ArrayList<String> listamed = new ArrayList<String>();
+        for(Medico m : hosp.getListaMedicos()){
+            listamed.add(m.getNomeTrabalhador() +" " +m.getCodigoTrabalhador());
         }
-        else{
-            String[] medicos = new String[hosp.getListaMedicos().size()];
 
-            ArrayList<String> listamed = new ArrayList<String>();
-            for(Medico m : hosp.getListaMedicos()){
-                listamed.add(m.getNomeTrabalhador() +" " +m.getCodigoTrabalhador());
-            }
-
-            jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(listamed.toArray(medicos)));
-        }
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(listamed.toArray(medicos)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -242,12 +237,14 @@ public class EditarPaciente extends javax.swing.JFrame {
         if(!(jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty())){
             String nome = jTextField1.getText();
             String local = jTextField2.getText();
+            //mudar enfermaria 
             int i = jComboBox1.getSelectedIndex();
-            Enfermaria e = hosp.getListaEnfermariaLivres().get(i);
+            Enfermaria e = hosp.getListaEnfermaria().get(i);
              if(e.equals(pac.getEnfermaria())){
                 
             }
             else{
+                 try{
                 pac.getEnfermaria().removerPaciente(pac);
                 pac.setEnfermaria(e);
                 e.setPaciente(pac);
@@ -260,8 +257,15 @@ public class EditarPaciente extends javax.swing.JFrame {
                     }
                 }
             
-       
+                 }
+                 catch(Exception ex){
+                     JOptionPane.showMessageDialog(null,
+                    "Selecione outra enfermaria para colocar o Paciente",
+                    "Enfermaria Cheia",
+                    JOptionPane.ERROR_MESSAGE);
+                 }
             }
+             //associar equipamento
             int b = jComboBox3.getSelectedIndex();
             Equipamento eq;
             if(jComboBox3.getSelectedItem().toString().equals("Nenhum equipamento")){
@@ -273,15 +277,25 @@ public class EditarPaciente extends javax.swing.JFrame {
                  eq.setPaciente(pac);
             }
            
-            String estado = (String) jComboBox2.getSelectedItem();
+            
             pac.setNome(nome);
             pac.setLocalidade(local);
             
+            //associar o paciente a um médico
             int x =jComboBox4.getSelectedIndex();
+            
             Medico med = hosp.getListaMedicos().get(x);
-            pac.setMedico(med);
+            if(med.equals(pac.getMedico())){
+                
+            }
+            else{
+                pac.setMedico(med);
+                med.getListaPac().add(pac); 
+            }
             
             
+            //definir estado
+            String estado = (String) jComboBox2.getSelectedItem();
             pac.setEstado(estado);
             sist.gravarSistema();
             this.dispose();
@@ -296,13 +310,13 @@ public class EditarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        enf = hosp.getListaEnfermariaLivres().get(jComboBox1.getSelectedIndex());
+        enf = hosp.getListaEnfermaria().get(jComboBox1.getSelectedIndex());
         atualizarEquipamento();
         atualizarMedico();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        enf = hosp.getListaEnfermariaLivres().get(jComboBox1.getSelectedIndex());
+        enf = hosp.getListaEnfermaria().get(jComboBox1.getSelectedIndex());
     }//GEN-LAST:event_jComboBox4ActionPerformed
        
     private void atualizarEquipamento(){
@@ -320,12 +334,8 @@ public class EditarPaciente extends javax.swing.JFrame {
         
         
         
-    private void atualizarMedico(){
-            
-            if(enf == null){
-
-        }
-        else{
+    private void atualizarMedico()
+        {
             ArrayList<Medico> listaMedicosEnf= new ArrayList<Medico>();
             for(Medico m : hosp.getListaMedicos()){
                 if(m.getEnfermaria().equals(enf)){
@@ -341,7 +351,7 @@ public class EditarPaciente extends javax.swing.JFrame {
 
             jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(listamed.toArray(medicos)));
         }
-        }
+        
     /**
      * @param args the command line arguments
      */

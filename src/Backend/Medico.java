@@ -19,24 +19,24 @@ public class Medico extends Trabalhador implements Serializable {
     private Enfermaria enf;
     
     public Medico(String codigoTrabalhador, String nomeTrabalhador, String especialidade, Enfermaria enf) {
-        super(codigoTrabalhador, nomeTrabalhador);
+        super(codigoTrabalhador, nomeTrabalhador, enf);
         listaPac = new ArrayList<Paciente>();
-        this.enf= enf;
         this.especialidade= especialidade;
     }
-    @Override
-    public String getEspecialidade(){
-        return especialidade;
-    }
+
     public ArrayList<Paciente> getListaPac(){
         return listaPac;
     }
     public Enfermaria getEnfermaria(){
         return enf;
     }
+    public String getEspecialidade(){
+        return especialidade;
+    }
     public void setEspecialidade(String esp){
         this.especialidade= esp;
     }
+    @Override
     public void setEnfermaria(Enfermaria e){
         this.enf= e;
     }

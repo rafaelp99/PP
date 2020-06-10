@@ -15,6 +15,7 @@ public class Hospital implements Serializable{
     private String codHospital;
     private String nomeHospital;
     private String localidade;
+    private int contador;
     private ArrayList<Paciente> listaPacientes;
     private ArrayList<Trabalhador> listaTrabalhadores;
     private ArrayList<Enfermaria> listaEnfermaria;
@@ -28,10 +29,20 @@ public class Hospital implements Serializable{
         listaTrabalhadores= new ArrayList<Trabalhador>();
         listaEnfermaria = new ArrayList<Enfermaria>();
         listaMedicos = new ArrayList<Medico>();
-        
+
     }
     public ArrayList<Paciente> getListaPacientes(){
         return listaPacientes;
+    }
+
+    public int getPacientesAtuais(){
+        ArrayList<Paciente> listaPacientesAtuais = new ArrayList<Paciente>();
+            for(Paciente p : listaPacientes){
+                if(p.getDataSaida().isEmpty()){
+                listaPacientesAtuais.add(p);
+            }
+        }
+            return listaPacientesAtuais.size();
     }
      public ArrayList<Trabalhador> getListaTrabalhadores(){
         return listaTrabalhadores;
@@ -53,6 +64,7 @@ public class Hospital implements Serializable{
          
          return listaMedicos;
      }
+    
      public String getNomeHospital(){
          return nomeHospital;
      } 

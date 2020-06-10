@@ -67,7 +67,7 @@ private AbstractTableModel criarTabela() {
                     case 2:
                         return sist.getListaHoospitais().getHospital(rowIndex).getCodHospital();
                     case 3:
-                        return sist.getListaHoospitais().getHospital(rowIndex).getListaPacientes().size();
+                        return sist.getListaHoospitais().getHospital(rowIndex).getPacientesAtuais();
                     case 4:
                         return sist.getListaHoospitais().getHospital(rowIndex).getListaTrabalhadores().size();
                    

@@ -35,7 +35,7 @@ public class MenuTrabalhador extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 public AbstractTableModel criarTabela() {   
-        String[] nomeColunas = {"Função", "Nome", "Código", "Especialidade", "Enfermaria"};
+        String[] nomeColunas = {"Função", "Nome", "Código", "Enfermaria", "Espacialidade", "Pacientes"};
         System.out.println("a");
         jTable1.setAutoCreateRowSorter(true);
         return new AbstractTableModel() {     
@@ -72,6 +72,8 @@ public AbstractTableModel criarTabela() {
                     case 2:
                         return hosp.getListaTrabalhadores().get(rowIndex).getCodigoTrabalhador();
                     case 3:
+                        return hosp.getListaTrabalhadores().get(rowIndex).getEnf().getCodEnf();
+                    case 4:  
                         if(hosp.getListaTrabalhadores().get(rowIndex) instanceof Medico){
                             for(Medico m : hosp.getListaMedicos()){
                                 if(m.getCodigoTrabalhador() == hosp.getListaTrabalhadores().get(rowIndex).getCodigoTrabalhador()){
@@ -84,12 +86,12 @@ public AbstractTableModel criarTabela() {
                         
                         else{
                             return "";
-                        }   
-                    case 4:
+                        }
+                    case 5:
                         if(hosp.getListaTrabalhadores().get(rowIndex) instanceof Medico){
                             for(Medico m : hosp.getListaMedicos()){
                                 if(m.getCodigoTrabalhador() == hosp.getListaTrabalhadores().get(rowIndex).getCodigoTrabalhador()){
-                                    return m.getEnfermaria().getCodEnf();
+                                    return m.getListaPac().size();
                                     
                                 }
                                 }
@@ -98,10 +100,8 @@ public AbstractTableModel criarTabela() {
                         
                         else{
                             return "";
-                        }   
-                        
-
-                   
+                        }
+                           
                     default:
                         return "";
                 }                              
