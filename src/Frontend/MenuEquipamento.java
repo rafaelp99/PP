@@ -138,6 +138,11 @@ public class MenuEquipamento extends javax.swing.JFrame {
         });
 
         jButton2.setText("Editar Dados");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Apagar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -303,6 +308,12 @@ public class MenuEquipamento extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         filtrarTabela();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int row = tabEquipamento.getSelectedRow();
+        Equipamento eq = enf.getListaEquipamento().get(row);
+        new EditarEquipamento(sist, user,enf, eq, this);
+    }//GEN-LAST:event_jButton2ActionPerformed
     private void filtrarTabela(){
         String key = "";
           key = jComboBox1.getSelectedItem().toString();

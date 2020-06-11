@@ -384,6 +384,14 @@ private AbstractTableModel criarTabela() {
         int row = tabHospital.rowAtPoint(evt.getPoint());
         Hospital h = sist.getListaHoospitais().getHospital(row);
         atualizarEnf(h);
+        if(h.getListaEnfermaria().size()<=0){
+            btPacientes.setEnabled(false);
+            jButton1.setEnabled(false);
+        }
+        else{
+            btPacientes.setEnabled(false);
+            jButton1.setEnabled(false);
+        }
     }//GEN-LAST:event_tabHospitalMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
