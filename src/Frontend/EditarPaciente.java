@@ -121,7 +121,7 @@ public class EditarPaciente extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel6.setText("Médico");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {""}));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>());
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox4ActionPerformed(evt);

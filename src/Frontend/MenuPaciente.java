@@ -197,7 +197,7 @@ public AbstractTableModel criarTabela() {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>());
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox2ActionPerformed(evt);
@@ -207,7 +207,7 @@ public AbstractTableModel criarTabela() {
         jComboBox3.setVisible(false);
         jComboBox2.setVisible(false);
         jButton6.setVisible(false);
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione: "}));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enfermaria", "Médico", "Estado"}));
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);
@@ -345,18 +345,18 @@ public AbstractTableModel criarTabela() {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       if(i==1){
+       if(i==0){
         jComboBox3.setVisible(true);
         jComboBox2.setVisible(true);
         jButton6.setVisible(true);
-        filtrarTabela();
-        i=0;   
+        
+        i=1;   
        }
-       else if(i==0){
+       else if(i==1){
         jComboBox3.setVisible(false);
         jComboBox2.setVisible(false);
         jButton6.setVisible(false);
-        i=1;
+        i=0;
        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
