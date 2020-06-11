@@ -112,7 +112,7 @@ public class EditarPaciente extends javax.swing.JFrame {
 
         jLabel6.setText("Médico");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {""}));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>());
         jComboBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox4ActionPerformed(evt);
