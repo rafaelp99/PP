@@ -80,6 +80,34 @@ public class Hospital implements Serializable{
      public Paciente getPaciente(int i){
          return listaPacientes.get(i);
      }
+     public Enfermaria getEnfermariaMaisOcupada(){
+         int i = 0;
+         Enfermaria e1=null;
+         for(Enfermaria e :listaEnfermaria){
+             
+             if((e.getCamas()-e.getCamasLivres())>i)
+                 i= e.getCamas()-e.getCamasLivres();
+                 e1=e;
+         }
+         return e1;
+     }
+     public Enfermaria getEnfermariaEquipamentos(){
+         int i=0;
+         int a= 0;
+         Enfermaria e1 = null;
+         for(Enfermaria e : listaEnfermaria){
+             for(Equipamento eq : e.getListaEquipamento()){
+                 if(eq.getEstado().equals("Ocupado")){
+                     a++;
+                 }
+             }
+             if(a>=i){
+                 i=a;
+                 e1=e;
+             }
+         }
+         return e1;
+     }
      public void adcionarMedico(Medico m){
          listaMedicos.add(m);
      }

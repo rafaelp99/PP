@@ -5,13 +5,17 @@
  */
 package Frontend;
 
+import Backend.Enfermaria;
 import Backend.Hospital;
 import Backend.ListaHospitais;
 import Backend.Medico;
 import Backend.Sistema;
 import Backend.Trabalhador;
 import Backend.Utilizador;
+import java.util.ArrayList;
+import javax.swing.RowFilter;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
 /**
  *
  * @author Rafael Pinto
@@ -23,7 +27,8 @@ public class MenuTrabalhador extends javax.swing.JFrame {
        private static Utilizador user;
        private static ListaHospitais listH;
        AbstractTableModel tabela;
-    /**
+       private int i= 0;
+       /**
      * Creates new form MenuTrabalhador
      */
     public MenuTrabalhador(Sistema sist, Utilizador user, Hospital hosp) {
@@ -126,6 +131,9 @@ public AbstractTableModel criarTabela() {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Trabalhador");
@@ -199,6 +207,24 @@ public AbstractTableModel criarTabela() {
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/filtro.png")));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setVisible(false);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jButton6.setVisible(false);
+        jButton6.setText("Filtrar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,32 +232,53 @@ public AbstractTableModel criarTabela() {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton4)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButton1)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton2)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton3))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(44, 44, 44))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton6))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addGap(15, 15, 15))
         );
+
+        String[] codEnf = new String[hosp.getListaEnfermaria().size()];
+        ArrayList<String> listaenf = new ArrayList<String>();
+        for(Enfermaria e : hosp.getListaEnfermaria()){
+            listaenf.add(e.getCodEnf());
+        }
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(listaenf.toArray(codEnf)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -260,6 +307,30 @@ public AbstractTableModel criarTabela() {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(i==0){
+            jComboBox1.setVisible(true);
+            jButton6.setVisible(true);
+            i=1;
+        }
+        else{
+            jComboBox1.setVisible(false);
+            jButton6.setVisible(false);
+            i=0;
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        filtrarTabela();
+    }//GEN-LAST:event_jButton6ActionPerformed
+    private void filtrarTabela(){
+        String key = "";
+          key = jComboBox1.getSelectedItem().toString();
+          tabela =  (AbstractTableModel) jTable1.getModel();
+          TableRowSorter<AbstractTableModel> rf = new TableRowSorter<AbstractTableModel>(tabela);
+           jTable1.setRowSorter(rf);
+           rf.setRowFilter(RowFilter.regexFilter(key));
+    }
 
     /**
      * @param args the command line arguments
@@ -301,6 +372,9 @@ public AbstractTableModel criarTabela() {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

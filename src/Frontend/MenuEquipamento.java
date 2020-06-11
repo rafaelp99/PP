@@ -191,6 +191,11 @@ public class MenuEquipamento extends javax.swing.JFrame {
         });
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Livre", "Ocupado" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Filtrar");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
