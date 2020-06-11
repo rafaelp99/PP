@@ -87,7 +87,7 @@ public class AlterarDados extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(259, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
@@ -117,8 +117,9 @@ public class AlterarDados extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jButton2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jButton1))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton1)
+                            .addGap(39, 39, 39))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -166,7 +167,7 @@ public class AlterarDados extends javax.swing.JFrame {
             user.setNome(nome);
             user.setPass(passe);
             sist.gravarSistema();
-            JOptionPane.showMessageDialog(null, "Dados alterados!", "Dados alterados", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Dados alterados!", "Dados alterados", JOptionPane.INFORMATION_MESSAGE);
              this.dispose();
         }
        

@@ -339,7 +339,7 @@ public AbstractTableModel criarTabela() {
         }
     }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new CriarPaciente(sist, hosp, this).setVisible(true);
+        new CriarPaciente(sist, user, hosp, this).setVisible(true);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 

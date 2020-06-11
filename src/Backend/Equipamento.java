@@ -30,6 +30,9 @@ public class Equipamento implements Serializable {
     public String getNome(){
         return nomeEquipamento;
     }
+    public void setNome(String nome){
+        this.nomeEquipamento=nome;
+    }
     public void setPaciente(Paciente p){
         if(estado.equals("Livre")){
         p.setEquipamento(this);

@@ -9,6 +9,7 @@ import Backend.Enfermaria;
 import Backend.Hospital;
 import Backend.Paciente;
 import Backend.Sistema;
+import Backend.Utilizador;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,11 +24,13 @@ public class CriarPaciente extends javax.swing.JFrame {
 
     private static Hospital hosp;
     private static Sistema sist;
+    private static Utilizador user;
     private int cod;
     private ArrayList<String> listaenf;
     private static MenuPaciente mPac;
-    public CriarPaciente(Sistema sist, Hospital hosp, MenuPaciente mPac) {
+    public CriarPaciente(Sistema sist, Utilizador user, Hospital hosp, MenuPaciente mPac) {
         this.hosp=hosp;
+        this.user=user;
         this.sist=sist;
         this.mPac= mPac;
         initComponents();
@@ -280,7 +283,7 @@ public class CriarPaciente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CriarPaciente(sist, hosp, mPac).setVisible(true);
+                new CriarPaciente(sist, user, hosp, mPac).setVisible(true);
             }
         });
     }

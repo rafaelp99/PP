@@ -14,19 +14,21 @@ import Backend.Utilizador;
  *
  * @author Rafael Pinto
  */
-public class CriarEquipamento extends javax.swing.JFrame {
+public class EditarEquipamento extends javax.swing.JFrame {
     private static Sistema sist;
     private static Enfermaria enf;
     private static MenuEquipamento mEquip;
     private static Utilizador user;
+    private static Equipamento equip;
 
     /**
      * Creates new form CriarEquipamento
      */
-    public CriarEquipamento(Sistema sist, Utilizador user, Enfermaria enf, MenuEquipamento mEquip) {
+    public EditarEquipamento(Sistema sist, Utilizador user, Enfermaria enf, Equipamento equip, MenuEquipamento mEquip) {
         this.sist=sist;
         this.enf=enf;
         this.user=user;
+        this.equip=equip;
         this.mEquip= mEquip;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -146,9 +148,9 @@ public class CriarEquipamento extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        if(!jTextField1.getText().isEmpty()){
-           Equipamento eq = new Equipamento("eq"+sist.codigoUnico, jTextField1.getText());
-           enf.addEquipamento(eq);
-           sist.codigoUnico++;
+           
+           equip.setNome(jTextField1.getText());
+           
            sist.gravarSistema();
            mEquip.tabela.fireTableDataChanged();
            this.dispose();
@@ -186,7 +188,7 @@ public class CriarEquipamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CriarEquipamento(sist, user, enf, mEquip).setVisible(true);
+                new EditarEquipamento(sist, user, enf, equip, mEquip).setVisible(true);
             }
         });
     }

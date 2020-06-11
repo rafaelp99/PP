@@ -398,6 +398,7 @@ private AbstractTableModel criarTabela() {
        else{
            sist.getListaHoospitais().getListaHospital().remove(h);
            tabela.fireTableDataChanged();
+           sist.gravarSistema();
        }
     }//GEN-LAST:event_jButton4ActionPerformed
     private void atualizarEnf(Hospital h){
