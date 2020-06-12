@@ -134,4 +134,10 @@ public class Hospital implements Serializable{
             throw new Exception("Mova todos os Pacientes");
         }
     }
+    public void setNome(String nome){
+        this.nomeHospital=nome;
+    }
+    public void setLocalidade(String local){
+        this.localidade = local;
+    }
 }
