@@ -94,14 +94,18 @@ public class Paciente implements Serializable {
         this.equip = equip;
         
     }
-    public void setEnfermaria(Enfermaria enf){
-        this.enf= enf;
+    public void setEnfermaria(Enfermaria e){
+       
+             this.enf= e;
+       
+        
+
     }
     public void setCama(int cama){
         this.cama = cama;
     }
-    public void setLocalidade(String Localidade){
-        this.localidade=localidade;
+    public void setLocalidade(String local){
+        this.localidade=local;
     }
    public void setDataSaida(Calendar dataSaida){
        this.dataSaida= dataSaida;
@@ -110,7 +114,9 @@ public class Paciente implements Serializable {
        if(!(this.getEquipamento() == null)){
        this.getEquipamento().removerPaciente();
        this.setEquipamento(null);
+       
        }
+       this.setMedico(null);
        this.setEstado("");
        this.enf=null;
        this.setCama(0);

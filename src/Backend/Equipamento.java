@@ -46,7 +46,7 @@ public class Equipamento implements Serializable {
     }
     public void removerPaciente(){
         if(estado.equals("Ocupado")){
-            this.paciente.setEquipamento(null);
+            
             this.paciente=null;
             this.estado="Livre";
         }

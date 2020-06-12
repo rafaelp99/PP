@@ -33,6 +33,7 @@ public class Trabalhador implements Serializable{
     public String getNomeTrabalhador(){
         return nomeTrabalhador;
     }
+    
     public Enfermaria getEnf(){
         return enf;
     }

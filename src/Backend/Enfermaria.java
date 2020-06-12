@@ -97,7 +97,8 @@ public class Enfermaria implements Serializable {
         
     }
         else{
-        System.out.println("Enfermaria Cheia!");
+          throw new IllegalArgumentException("Enfermaria Cheia!");
+        
         }
     }
     public void removerPaciente(Paciente p){

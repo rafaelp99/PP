@@ -191,11 +191,11 @@ public class CriarPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nome= jTextField1.getText();
+       String nome= jTextField1.getText();
         String localidade = jTextField2.getText();
         //int codigo = (int) jSpinner1.getValue();
         Calendar entrada = jDateChooser1.getCalendar();
-        
+        if(!((nome.isEmpty() || localidade.isEmpty()) || entrada==null)){
         String codE = jComboBox1.getSelectedItem().toString();
         Enfermaria e1 = null;
         for(Enfermaria e : hosp.getListaEnfermaria()){
@@ -242,7 +242,13 @@ public class CriarPaciente extends javax.swing.JFrame {
     "Enfermaria Cheia",
     JOptionPane.ERROR_MESSAGE);
         }
-        
+        }
+        else{
+            JOptionPane.showMessageDialog(null,
+                "Campos por preencher!",
+                "Erro",
+                JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

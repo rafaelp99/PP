@@ -97,7 +97,7 @@ public class EditarPaciente extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel5.setText("Equipamento");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>());
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox3ActionPerformed(evt);
@@ -249,14 +249,20 @@ public class EditarPaciente extends javax.swing.JFrame {
             listaequip.add("Nenhum equipamento");
             jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(listaequip.toArray(equip)));
         }
-        String[] medicos = new String[hosp.getListaMedicos().size()];
+        if(!(hosp.getListaMedicos().size()==0)){
+            String[] medicos = new String[hosp.getListaMedicos().size()];
 
-        ArrayList<String> listamed = new ArrayList<String>();
-        for(Medico m : hosp.getListaMedicos()){
-            listamed.add(m.getNomeTrabalhador() +" " +m.getCodigoTrabalhador());
+            ArrayList<String> listamed = new ArrayList<String>();
+            for(Medico m : hosp.getListaMedicos()){
+                listamed.add(m.getNomeTrabalhador() +" " +m.getCodigoTrabalhador());
+            }
+
+            jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(listamed.toArray(medicos)));
         }
+        else{
+            jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Médicos" }));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(listamed.toArray(medicos)));
+        }
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -281,7 +287,7 @@ public class EditarPaciente extends javax.swing.JFrame {
              if(e.equals(pac.getEnfermaria())){
                 
             }
-            else{
+             else if(e.getCamaPaciente().containsValue(null)){
                  try{
                 pac.getEnfermaria().removerPaciente(pac);
                 pac.setEnfermaria(e);
@@ -296,17 +302,26 @@ public class EditarPaciente extends javax.swing.JFrame {
                 }
             
                  }
-                 catch(Exception ex){
+                 catch(Exception IllegalArgumentException){
                      JOptionPane.showMessageDialog(null,
                     "Selecione outra enfermaria para colocar o Paciente",
                     "Enfermaria Cheia",
                     JOptionPane.ERROR_MESSAGE);
                  }
             }
+             else if(!e.getCamaPaciente().containsValue(null)){
+                 JOptionPane.showMessageDialog(null,
+                    "Selecione outra enfermaria para colocar o Paciente",
+                    "Enfermaria Cheia",
+                    JOptionPane.ERROR_MESSAGE);
+             }
              //associar equipamento
             int b = jComboBox3.getSelectedIndex();
             Equipamento eq;
             if(jComboBox3.getSelectedItem().toString().equals("Nenhum equipamento")){
+                eq = pac.getEquipamento();
+                pac.setEquipamento(null);
+                eq.removerPaciente();
                 
             }
             else{
@@ -321,7 +336,7 @@ public class EditarPaciente extends javax.swing.JFrame {
             
             //associar o paciente a um médico
             int x =jComboBox4.getSelectedIndex();
-            
+            try{
             Medico med = hosp.getListaMedicos().get(x);
             if(med.equals(pac.getMedico())){
                 
@@ -330,7 +345,10 @@ public class EditarPaciente extends javax.swing.JFrame {
                 pac.setMedico(med);
                 med.getListaPac().add(pac); 
             }
-            
+            }
+            catch(Exception NullPointerException){
+                
+            }
             
             //definir estado
             String estado = (String) jComboBox2.getSelectedItem();
@@ -349,8 +367,9 @@ public class EditarPaciente extends javax.swing.JFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         enf = hosp.getListaEnfermaria().get(jComboBox1.getSelectedIndex());
+        System.out.println(enf.getCodEnf());
         atualizarEquipamento();
-        atualizarMedico();
+        atualizarMedico(enf);
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
@@ -367,19 +386,24 @@ public class EditarPaciente extends javax.swing.JFrame {
             listas.add("Nenhum equipamento");
             jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(listas.toArray(listasEquip)));
             System.out.println("Atualizado");
-        
+            System.out.println(enf.getCodEnf());
     }
         
         
         
-    private void atualizarMedico()
-        {
+    private void atualizarMedico(Enfermaria enf)
+        {   
+                        System.out.println(enf.getCodEnf());
+
+            if(hosp.getListaMedicos().size()>0){
             ArrayList<Medico> listaMedicosEnf= new ArrayList<Medico>();
             for(Medico m : hosp.getListaMedicos()){
-                if(m.getEnfermaria().equals(enf)){
+                if(m.getEnf().equals(enf)){
                     listaMedicosEnf.add(m);
                 }
+                
             }
+            if(listaMedicosEnf.size()>0){
             String[] medicos = new String[listaMedicosEnf.size()];
 
             ArrayList<String> listamed = new ArrayList<String>();
@@ -389,10 +413,14 @@ public class EditarPaciente extends javax.swing.JFrame {
 
             jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(listamed.toArray(medicos)));
         }
-        
-    /**
-     * @param args the command line arguments
-     */
+            else{
+                 jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não há medicos nesta enfermaria" }));
+
+            }
+        }
+    
+     }
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
