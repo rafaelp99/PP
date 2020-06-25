@@ -239,7 +239,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox4ActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if(!(hosp.getListaMedicos().size()==0)){&#xa;String[] medicos = new String[hosp.getListaMedicos().size()];&#xa;&#xa;ArrayList&lt;String&gt; listamed = new ArrayList&lt;String&gt;();&#xa;    for(Medico m : hosp.getListaMedicos()){&#xa;        listamed.add(m.getNomeTrabalhador() +&quot; &quot; +m.getCodigoTrabalhador());&#xa;}&#xa;        &#xa;jComboBox4.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(listamed.toArray(medicos)));&#xa;}&#xa;else{&#xa; jComboBox4.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;M&#xe9;dicos&quot; }));&#xa;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="if(!(hosp.getListaMedicos().size()==0)){&#xa;String[] medicos = new String[hosp.getListaMedicos().size()];&#xa;&#xa;ArrayList&lt;String&gt; listamed = new ArrayList&lt;String&gt;();&#xa;    for(Medico m : hosp.getListaMedicos()){&#xa;        listamed.add(m.getCodigoTrabalhador());&#xa;}&#xa;        &#xa;jComboBox4.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(listamed.toArray(medicos)));&#xa;}&#xa;else{&#xa; jComboBox4.setModel(new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] { &quot;M&#xe9;dicos&quot; }));&#xa;&#xa;}"/>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>

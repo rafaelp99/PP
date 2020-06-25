@@ -1,0 +1,28 @@
+//chupa runah
+var train=true;
+console.log(train);
+var trainsTotal = 0;
+setInterval(function(){
+        
+       
+
+	   var btn = document.getElementsByTagName("span");
+	   
+	   if(train){
+	       for(var i = 0; i<btn.length; i++)
+	       
+
+	       if(btn[i].innerText.indexOf("icon")> -1){
+	           console.log("fdx")
+	           btn[i].click();
+	           trainsTotal++;
+	           console.log("Trains: " +trainsTotal);
+	           }
+
+		} 
+
+
+	
+
+}, 1000)
+    

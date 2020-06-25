@@ -197,7 +197,24 @@ public class EditarTrabalhador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if(jTextField1.getText().isEmpty() || jComboBox1.getSelectedItem() == null){
+            System.out.print("Erro");
+        }
+        else{
+            trab.setNome(jTextField1.getText());
+           int i = jComboBox1.getSelectedIndex();
+           Enfermaria e= hosp.getEnfermaria(i);
+           if(trab instanceof Medico){
+               for(Medico m : hosp.getListaMedicos()){
+                   if(trab.getCodigoTrabalhador()== m.getCodigoTrabalhador()){
+                       m.setEspecialidade(jTextField2.getText());
+                   }
+               }
+           }
+            trab.setEnfermaria(e);
+            sist.gravarSistema();
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
